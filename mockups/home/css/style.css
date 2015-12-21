@@ -1,0 +1,57 @@
+/* mon css */
+h1 {
+	text-align: center;
+}
+
+body {
+	min-height: 100%;
+}
+
+.jumbotron {
+}
+
+#body-container {
+	margin: 0;
+	background-color: rgba(0,0,0,0.1);
+	height: 100%;
+}
+
+/*navbar tweaks */
+.navbar {
+	background-color: rgba(241,241,241,0.3);
+	border-bottom: solid rgb(200,100,100);
+	border-radius: 0px;
+	margin-bottom: 0;
+}
+
+#inscription-container #formulaire-login{
+	margin-left: 5%;
+}
+
+#formulaire-login {
+	margin-left:auto;
+	margin-right: auto;
+	display: inline-block;
+}
+
+#kiraitchi {
+	width: auto;
+	height: 250px;
+	display: inline-block;
+	vertical-align: bottom
+}
+
+#home-presentation {
+	text-align: center;
+}
+
+#home-presentation img{
+	height: 150px;
+	width: auto;
+	border: thin rgba(51,51,51,0.3) solid;
+}
+
+footer {
+	padding-left: 2%;
+	padding-right: 2%;
+}
