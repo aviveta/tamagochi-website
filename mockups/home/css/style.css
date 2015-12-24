@@ -38,7 +38,8 @@ body {
 	width: auto;
 	height: 250px;
 	display: inline-block;
-	vertical-align: bottom
+	vertical-align: bottom;
+	margin-left: 30px;
 }
 
 #home-presentation {
@@ -63,3 +64,40 @@ footer {
 	margin-right: auto;
 }
 
+/* Ajout sakura */
+#bouton_connection {
+	display: inline-block;
+	text-align: center;
+}
+
+#bouton_inscription {
+	display: inline-block;
+	text-align: center;
+}
+
+#salut {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+#lovelin {
+	width: auto;
+	height: 250px;
+	margin-left: 30px;
+}
+
+#bulle {
+	height: 150px;
+	width: auto;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+
+.form-group {
+	width: 90%;
+}
+
+#envoyer {
+	margin-left: 70%;
+}

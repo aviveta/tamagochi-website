@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Macaque</title>
+    <title>InscrireMacaque</title>
 
 
     <!-- Bootstrap -->
@@ -32,7 +32,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Inscription / Se connecter <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="inscription.html">Inscription / Se connecter <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Jouer</a></li>
             <li><a href="boutique.html">Boutique</a></li>
           </ul>
@@ -58,20 +58,56 @@
       <!-- row -->
       <div class="row" id="inscription-container">
         <div class="col-md-2">
+        </div>
+        <div class="col-md-5">
+          <!--<form class="form-signin" id="formulaire-login">
+            <h2 class="form-signin-heading">S'inscrire</h2>
+	    <label for="inputFirstname" class="sr-only">Nom</label>
+	    <input type="text" class="form-control" placeholder="Nom" required="" autofocus="">
+	    <label for="inputLastname" class="sr-only">Prénom</label>
+	    <input type="text" class="form-control" placeholder="Prénom" required="" autofocus="">
+	    <input type="text" class="form-control" placeholder="Adresse">
+	    <input type="text" class="form-control" placeholder="Code Postal">
+	    <input type="text" class="form-control" placeholder="Ville">
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Mot de passe</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
+	    <button class="btn btn-lg btn-primary btn-block" type="submit">Envoyer !</button>
+          </form>-->
+	  <form>
+	     <div class="form-group">
+    		<label for="InputName1">Nom</label>
+    		<input type="text" class="form-control" id="InputName1" placeholder="Nom" required="" autofocus="">
+  	     </div>
+	     <div class="form-group">
+    		<label for="InputName2">Prénom</label>
+    		<input type="text" class="form-control" id="InputName2" placeholder="Prénom" required="" autofocus="">
+  	     </div>
+	     <div class="form-group">
+    		<label for="InputBirthday">Date d'anniversaire</label>
+    		<input type="date" class="form-control" id="InputBirthday" placeholder="Date d'anniversaire" required="" autofocus="">
+		<p class="help-block">Format: jj/mm/aaaa</p>
+  	     </div>
+  	     <div class="form-group">
+    		<label for="InputEmail">Adresse Email</label>
+    		<input type="email" class="form-control" id="InputEmail" placeholder="Email" required="" autofocus="">
+  	     </div>
+  	     <div class="form-group">
+    		<label for="InputPassword">Mot de passe</label>
+    		<input type="password" class="form-control" id="InputPassword" placeholder="Mot de passe" required="">
+  	     </div>
+	     <button type="submit" id="envoyer" class="btn btn-lg btn-primary">Envoyer !</button>
+	  </form>
 	</div>
-        <div class="col-md-3" id="bouton_inscription">
-          <h2 class="form-signin-heading">Pour s'inscrire</h2><br />
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Cliquez ici</button>
+	<div id="salut" class="col-md-5">
+           <img id="lovelin" src="../home/img/lovelin.png"/>
+	   <img id="bulle" src="../home/img/bulle.png"/>
 	</div>
-	<img class="col-md-2" id="kiraitchi" src="../home/img/vintage.png" />
-	<div class="col-md-3" id="bouton_connection">
-	   <h2 class="form-signin-heading">Pour se connecter</h2><br />
-	   <button class="btn btn-lg btn-primary btn-block" type="submit">Cliquez ici</button>
-	</div>
-	<div class="col-md-2">
-	</div>
-
+        <!--</div>-->
+      </div>
       <!-- end row -->
+
     </div>
       <!--end page-container -->
 
