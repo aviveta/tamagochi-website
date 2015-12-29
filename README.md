@@ -9,7 +9,7 @@
 ##Comment compiler le projet ?
 Il suffit de taper la commande 
 
-$ mvn package
+    $ mvn package
 
 ##Le dossier SRC
 Ce dossier contient deux dossiers importants :
