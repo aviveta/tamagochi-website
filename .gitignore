@@ -1,5 +1,6 @@
 target
 *.class
+*.swp
 
 # Eclipse Core
 .project
