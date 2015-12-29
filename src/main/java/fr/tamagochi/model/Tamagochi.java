@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
-public class Tamagotshi {
+public class Tamagochi {
 
   @OneToMany(mappedBy="tama",fetch=FetchType.EAGER)
   Collection<Obj> objs=new ArrayList<Obj>();
@@ -27,7 +27,7 @@ public class Tamagotshi {
   int sexe;
   int age;
 
-  public Tamagotshi(String n, int s, int a){
+  public Tamagochi(String n, int s, int a){
     this.nom = n;
     this.sexe=s;
     this.age=a;

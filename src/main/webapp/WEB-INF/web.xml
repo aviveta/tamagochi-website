@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- https://docs.jboss.org/jbossweb/7.0.x/appdev/web.xml.txt -->
+
+<!DOCTYPE web-app 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <!-- General description of your web application -->
+
+    <display-name>Projet d'intergiciel</display-name>
+
+    <!-- Context initialization parameters that define shared
+         String constants used within your application, which
+         can be customized by the system administrator who is
+         installing your application.  The values actually
+         assigned to these parameters can be retrieved in a
+         servlet or JSP page by calling:
+
+             String value =
+               getServletContext().getInitParameter("name");
+
+         where "name" matches the <param-name> element of
+         one of these initialization parameters.
+
+         You can define any number of context initialization
+         parameters, including zero.
+    -->
+
+    <context-param>
+      <param-name>webmaster</param-name>
+      <param-value>Adonis NAJIMI</param-value>
+      <description>
+	      nom du webmaster
+      </description>
+    </context-param>
+
+</web-app>

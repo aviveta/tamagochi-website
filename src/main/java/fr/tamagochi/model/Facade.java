@@ -14,7 +14,7 @@ public class Facade{
   int idTama=0;
   int idObj= 0;
   HashMap<Integer,Joueur> joueurs=new HashMap<Integer,Joueur>();
-  HashMap<Integer,Tamagotshi> tama=new HashMap<Integer,Tamagotshi>();
+  HashMap<Integer,Tamagochi> tama=new HashMap<Integer,Tamagochi>();
   HashMap<Integer,Obj> objets=new HashMap<Integer,Obj>();
   Boutique b = new Boutique();
  
@@ -50,7 +50,7 @@ public class Facade{
   }
 
   public Collection<Joueur> getTama() {
-		return em.createQuery("from Tamagotshi", Tamagotshis.class).getResultList();
+		return em.createQuery("from Tamagochi", Tamagochis.class).getResultList();
 		
   }
 
@@ -63,7 +63,7 @@ public class Facade{
 		this.joueurs = jrs;
   }
 
-  public void setTama(HashMap<Integer, Tamagotshi> tas) {
+  public void setTama(HashMap<Integer, Tamagochi> tas) {
 		this.tama = tas;
   }
 
@@ -82,7 +82,7 @@ public class Facade{
 //Ajouter un Tamagoshi à un joueur
   public void ajoutTama(String nom, int sexe, int idJoueur){
     Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
-    Tamagotshi t= new Tamagotshi(nom,sexe);
+    Tamagochi t= new Tamagochi(nom,sexe);
     em.persist(t);
     tama.put(t.getId(),t);
     j.associer(tama);
@@ -125,7 +125,7 @@ public class Facade{
 
   //Supprimer un Tamagoshi à un joueur
   public void supprTama(int idTama){
-    Tamagotshi t = (Tamagotshi) em.find(Tamagotshi.class,idTama);
+    Tamagochi t = (Tamagochi) em.find(Tamagochi.class,idTama);
     Joueur j = t.getProp();
     j.supprT(t);
     em.remove(t);

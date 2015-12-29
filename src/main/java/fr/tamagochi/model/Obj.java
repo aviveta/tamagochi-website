@@ -18,7 +18,7 @@ public class Obj {
   Joueur prop;
 
   @ManyToOne
-  Tamagotshi tama;
+  Tamagochi tama;
 
   @ManyToOne
   Boutique b;
@@ -43,11 +43,11 @@ public class Obj {
    this.prop = nProp;
  }
 
- public Tamagotshi getTama(){
+ public Tamagochi getTama(){
    return this.tama;
  }
 
- public void setTama(Tamagotshi nTama){
+ public void setTama(Tamagochi nTama){
    this.tama=nTama;
  }
 

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 public class Joueur {
   @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
-  Collection<Tamagotshi> tamas=new ArrayList<Tamagotshi>();
+  Collection<Tamagochi> tamas=new ArrayList<Tamagochi>();
 
   @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
   Collection<Obj> objs=new ArrayList<Obj>();
@@ -42,11 +42,11 @@ public class Joueur {
 
   //gestion des tamagotshis
 
-  public void associer(Tamagotshi t){
+  public void associer(Tamagochi t){
     this.tamas.add(t);
   }
 
-  public void supprT(Tamagotshi t){
+  public void supprT(Tamagochi t){
     this.tamas.remove(t);
   }
 
@@ -104,11 +104,11 @@ public class Joueur {
     this.pseudo = nPseudo;
   }
 
-  public Collection<Tamagotshi> getTamas(){
+  public Collection<Tamagochi> getTamas(){
     return this.tamas;
   }
 
-  public void setTamas(Collection<Tamagotshi> nTamas){
+  public void setTamas(Collection<Tamagochi> nTamas){
     this.tamas = nTamas;
   }
 
