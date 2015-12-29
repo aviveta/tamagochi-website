@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Macaque</title>
+    <title>GererMacaque</title>
 
 
     <!-- Bootstrap -->
@@ -26,7 +26,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Home</a>
+          <a class="navbar-brand" href="index2.html">Home</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,7 +40,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">photo <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="gestion.html">Gérer</a></li>
+                <li><a href="#">Gérer</a></li>
                 <li><a href="#">Deconnexion</a></li>
               </ul>
             </li>
@@ -52,56 +52,57 @@
     <!-- page-container contient tout le contenu relatif a la page courante -->
     <div id="page-container">
       <div class="jumbotron">
-        <h1>Bienvenue !</h1>
+        <h1>Gérer votre tamagotchi !</h1>
       </div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script>
-	//<![CDATA[
+      <div id="gauche" class="btn-group-vertical" role="group" aria-label="...">
+        <div>
+  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Nettoyer</button>
+	</div>
 
-	window.onload = function(){
+  	<div class="btn-group" role="group">
+    	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Nourrir
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+      	    <li><a href="#">Nourriture1</a></li>
+      	    <li><a href="#">Nourriture2</a></li>
+    	  </ul>
+        </div>
 
-	   var imgs = ['dofus1.png','Himouto.jpg','kiraitchi1.png','Tamagotchi_blue1.png'];
-
-	   var genImg = function(){
-	      $("#imgs").html("<img class=\"imgdemo\" src=\"img/"+imgs[Math.round(Math.random()*imgs.length-1)]+"\" />").css("opacity",0).animate({opacity:1},800);
-	   };
-	   var timer = setInterval(function(){ genImg(); }, 2000);
-	   genImg();
-				
-	};
-	//]]>
-	</script>
-
-	<div id="imgs"></div>
-	
-	<div class="col-md-2">
+	<div class="btn-group" role="group">
+    	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Appliquer un objet
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+      	    <li><a href="#">Objet1</a></li>
+      	    <li><a href="#">Objet2</a></li>
+    	  </ul>
         </div>
       </div>
-      <!-- end row -->
 
-      <hr/>
-      <!-- row -->
-      <div class="row" id="home-presentation">
-        <div class="col-lg-4"> <img src="img/dofus.png" class="img-circle">
-          <h2>Un oeuf aléatoire</h2>
-          <p>Commencez par choisir un oeuf que vous devrez élever</p>
-        </div>
-        <div class="col-lg-4"> <img src="img/himouto.jpg" class="img-circle">
-
-          <h2>Évolution</h2>
-          <p>Ils évolueront en fonction de la façon dont vous les élever.
-            <br/> Attention à ne pas les laisser sans surveillance trop longtemps !</p>
-        </div>
-        <div class="col-lg-4"> <img src="img/tamagotchi.jpg" class="img-circle">
-
-          <h2>Jouez avec vos amis</h2>
-          <p>Jouez avec vos téléphones sur un seul écran, comme si vous aviez une Wii !</p>
-        </div>
+      <div id="centre">
+	<img id="tama-gere" src="#">
       </div>
-      <!-- end row -->
+
+      <div id="droite" class="btn-group" role="group" aria-label="...">
+	<div>
+  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Promener</button>
+	</div>
+
+	<div>
+  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Distraire</button>
+	</div>
+
+	<div>
+  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Faire du sport</button>
+	</div>
       </div>
-      <!--end page-container -->
+
+    </div>
+    <!--end page-container -->
 
     <!-- footer -->
     <hr/>
@@ -117,3 +118,4 @@
   </body>
 
 </html>
+
