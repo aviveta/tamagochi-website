@@ -1,5 +1,5 @@
-import java.util.Collection;
-import java.util.HashMap;
+package model;
+import java.util.*;
 
 import javax.ejb.Singleton;
 import javax.persistence.Entity;

@@ -1,7 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,7 +46,7 @@ public class Boutique{
   }
 
     public int getId(){
-    return this.id
+    return this.id;
   }
 
   public void setId(int nId){
