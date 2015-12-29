@@ -13,41 +13,75 @@ import javax.persistence.Table;
 
 
 @Entity
-public class Tamagotshi {
-
-  @OneToMany(mappedBy="tama",fetch=FetchType.EAGER)
-  Collection<Obj> objs=new ArrayList<Obj>();
+public class Obj {
   @ManyToOne
   Joueur prop;
+
+  @ManyToOne
+  Tamagotshi tama;
+
+  @ManyToOne
+  Boutique b;
 
   @GeneratedValue(strategy=GenerationType.AUTO)
   @Id
   int id;
   String nom;
-  int sexe;
-  int age;
+  int prix;
 
-  public Tamagotshi(String n, int s, int a){
+  public Obj(String n, int p){
     this.nom = n;
-    this.sexe=s;
-    this.age=a;
+    this.prix = p;
   }
 
-  //Associer un objet à notre tamagotshi
- public void associer(Obj o){
-   this.objs.add(o);
-   o.setTama(this);
+  //getter et setter
+ public Joueur getProp(){
+   return this.prop;
  }
-
- //Supprimer un objet de notre Tama
- public void suppO(Obj o){
-   this.objs.remove(o);
-   o.setTama(null);
- }
-
- //getter et setter
  
+ public void setProp(Joueur nProp){
+   this.prop = nProp;
+ }
+
+ public Tamagotshi getTama(){
+   return this.tama;
+ }
+
+ public void setTama(Tamagotshi nTama){
+   this.tama=nTama;
+ }
+
+ public Boutique getBoutique(){
+   return this.b;
+ }
+
+ public void setBoutique(Boutique nB){
+   this.b=nB;
+ }
+
+ public int getId(){
+   return this.id;
+ }
+
+ public void setId(int nId){
+   this.id=nId;
+ }
+
+ public String getNom(){
+   return this.nom;
+ }
+
+ public void setNom(String nNom){
+   this.nom=nNom;
+ }
+
+ public int getPrix(){
+   return this.prix;
+ }
+
+ public void setPrix(int nPrix){
+   this.prix=nPrix;
+ }
 
 }
-
 
