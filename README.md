@@ -7,7 +7,7 @@
 
 
 ##Comment compiler le projet ?
-Il suffit de taper la commande 
+Il suffit de taper la commande (dans le dossier contenant le fichier pom.xml)
 
     $ mvn package
 
