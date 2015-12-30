@@ -11,11 +11,11 @@ public class Joueur {
   @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
   Collection<Obj> objs=new ArrayList<Obj>();
 
-  @ManyToMany(mappedBy="joueur",fetch=FetchType.EAGER)
-  Collection<Joueur> amis=new ArrayList<Joueur>();
+  //@ManyToMany(mappedBy="amis",fetch=FetchType.EAGER)
+  //Collection<Joueur> amis=new ArrayList<Joueur>();
 
-  @ManyToMany(mappedBy="demAmis",fetch=FetchType.EAGER)
-  Collection<Joueur> demAmis=new ArrayList<Joueur>();
+  //@ManyToMany(mappedBy="demAmis",fetch=FetchType.EAGER)
+  //Collection<Joueur> demAmis=new ArrayList<Joueur>();
 
 
 
@@ -45,22 +45,22 @@ public class Joueur {
   }
 
   //gestion des amis
-  public void demandeAmi(Joueur demandeur){
-    demAmis.add(demandeur);
-  }
+ // public void demandeAmi(Joueur demandeur){
+ //   demAmis.add(demandeur);
+ // }
 
-  public void accepterAmi(Joueur demander){
-    demAmis.remove(demandeur);
-    amis.add(demandeur);
-  }
+ // public void accepterAmi(Joueur demander){
+ //   demAmis.remove(demandeur);
+ //   amis.add(demandeur);
+ // }
 
-  public void refuserAmi(Joueur demandeur){
-    demAmis.remove(demandeur);
-  }
+ // public void refuserAmi(Joueur demandeur){
+  //  demAmis.remove(demandeur);
+ // }
 
-  public void supprAmi(Joueur ami){
-       amis.remove(ami);
-  }
+ // public void supprAmi(Joueur ami){
+  //     amis.remove(ami);
+ // }
 
   //Gestion des objets
 
@@ -114,21 +114,21 @@ public class Joueur {
     this.objs = nObjs;
   }
 
-  public Collection<Joueur> getDemAmis(){
-    return this.demAmis;
-  }
+  //public Collection<Joueur> getDemAmis(){
+    //return this.demAmis;
+  //}
 
-  public void setDemAmis(Collection<Joueur> nDemAmis){
-    this.demAmis= nDemAmis;
-  }
+  //public void setDemAmis(Collection<Joueur> nDemAmis){
+    //this.demAmis= nDemAmis;
+  //}
 
-   public Collection<Joueur> getAmis(){
-    return this.amis;
-  }
+   //public Collection<Joueur> getAmis(){
+   // return this.amis;
+ // }
 
-  public void setAmis(Collection<Joueur> nAmis){
-    this.amis= nAmis;
-  }
+ // public void setAmis(Collection<Joueur> nAmis){
+   // this.amis= nAmis;
+  //}
 }
 
  

@@ -101,7 +101,7 @@ public class Facade{
   public void demAmi(int demandeID, int demandeurID){
     Joueur demande = (Joueur) em.find(Joueur.class,demandeID);
     Joueur demandeur = (Joueur) em.find(Joueur.class,demandeurID);
-    demande.demandeAmi(demandeur);
+    //demande.demandeAmi(demandeur);
 
     
 
