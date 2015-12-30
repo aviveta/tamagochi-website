@@ -3,17 +3,19 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 
 @Entity
 public class Obj {
+
+  @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  int id;
+  String nom;
+  int prix;
+
   @ManyToOne
   Joueur prop;
 
@@ -22,12 +24,6 @@ public class Obj {
 
   @ManyToOne
   Boutique b;
-
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  @Id
-  int id;
-  String nom;
-  int prix;
 
   public Obj(String n, int p){
     this.nom = n;

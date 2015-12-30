@@ -3,14 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import javax.persistence.*;
 
 @Entity
 public class Tamagochi {
@@ -20,8 +13,8 @@ public class Tamagochi {
   @ManyToOne
   Joueur prop;
 
-  @GeneratedValue(strategy=GenerationType.AUTO)
   @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
   int id;
   String nom;
   int sexe;
@@ -59,7 +52,7 @@ public class Tamagochi {
    return this.objs;
  }
  
- public void setObjs(Collection<Objs> nObjs){
+ public void setObjs(Collection<Obj> nObjs){
    this.objs= nObjs;
  }
 

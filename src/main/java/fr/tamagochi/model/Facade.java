@@ -2,10 +2,7 @@ package model;
 import java.util.*;
 
 import javax.ejb.Singleton;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import javax.persistence.*;
 public class Facade{
 
   @PersistenceContext
@@ -49,12 +46,12 @@ public class Facade{
 		
   }
 
-  public Collection<Joueur> getTama() {
-		return em.createQuery("from Tamagochi", Tamagochis.class).getResultList();
+  public Collection<Tamagochi> getTama() {
+		return em.createQuery("from Tamagochi", Tamagochi.class).getResultList();
 		
   }
 
-  public Collection<Joueur> getObjets() {
+  public Collection<Obj> getObjets() {
 		return em.createQuery("from Obj", Obj.class).getResultList();
 		
   }
@@ -82,17 +79,17 @@ public class Facade{
 //Ajouter un Tamagoshi à un joueur
   public void ajoutTama(String nom, int sexe, int idJoueur){
     Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
-    Tamagochi t= new Tamagochi(nom,sexe);
+    Tamagochi t= new Tamagochi(nom,sexe,0);
     em.persist(t);
     tama.put(t.getId(),t);
-    j.associer(tama);
-    tama.setProp(j);
+    j.associer(t);
+    t.setProp(j);
 
   }
 
 
   public void ajoutObj(String nom,int prix){
-    Obj o= new Joueur(nom,prix);
+    Obj o= new Obj(nom,prix);
     em.persist(o);
     objets.put(o.getId(),o);
     b.ajouterO(o);
@@ -101,11 +98,11 @@ public class Facade{
 
   //Relations entre les joueurs
   //
-  public void faireSuivre(int suiviID, int suiveurID){
-    Joueur suivi = (Joueur) em.find(Joueur.class,suiviID);
-    Joueur suiveur = (Joueur) em.find(Joueur.class,suiveurID);
-    suivi.ajouterSuiveur(suiveur);
-    suiveur.ajouterSuivi(suivi);
+  public void demAmi(int demandeID, int demandeurID){
+    Joueur demande = (Joueur) em.find(Joueur.class,demandeID);
+    Joueur demandeur = (Joueur) em.find(Joueur.class,demandeurID);
+    demande.demandeAmi(demandeur);
+
     
 
 

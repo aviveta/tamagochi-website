@@ -1,16 +1,7 @@
 package model;
 
 import java.util.*;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-
+import javax.persistence.*;
 
 @Entity
 public class Joueur {
@@ -20,7 +11,7 @@ public class Joueur {
   @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
   Collection<Obj> objs=new ArrayList<Obj>();
 
-  @ManyToMany(mappedBy="amis",fetch=FetchType.EAGER)
+  @ManyToMany(mappedBy="joueur",fetch=FetchType.EAGER)
   Collection<Joueur> amis=new ArrayList<Joueur>();
 
   @ManyToMany(mappedBy="demAmis",fetch=FetchType.EAGER)
@@ -34,9 +25,12 @@ public class Joueur {
   String pseudo;
   int sexe;
 
+
+    
+
   public Joueur (String pseudonyme,int s){
     this.pseudo=pseudonyme;
-    this.s=sexe;
+    this.sexe=s;
 
   }
 
