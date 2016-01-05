@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/controleur")
+// @WebServlet("/kebab")
 public class ServerController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -17,10 +17,13 @@ public class ServerController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("../../../../../../mockups/index2.html");
+		response.setContentType("text/html");
+		response.getWriter().println("<html><body>kebab</body></html>");
+		// response.sendRedirect("../../../../../../mockups/index2.html");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		response.setContentType("text/html");
+		response.getWriter().println("<html><body>kebab</body></html>");
 	}
 }

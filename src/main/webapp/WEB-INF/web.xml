@@ -34,6 +34,29 @@
       <description>
 	      nom du webmaster
       </description>
+
+
     </context-param>
+
+    <servlet>
+        <servlet-name>ServerController</servlet-name>
+        <servlet-class>controleur.ServerController</servlet-class>
+    </servlet>
+    <servlet-mapping> 
+        <servlet-name>ServerController</servlet-name> 
+        <url-pattern>/kebab</url-pattern> 
+    </servlet-mapping> 
+
+    <servlet>
+        <servlet-name>GestionUtilisateur</servlet-name>
+        <servlet-class>controleur.GestionUtilisateur</servlet-class>
+    </servlet>
+    <servlet-mapping> 
+        <servlet-name>GestionUtilisateur</servlet-name>
+        <url-pattern>/macaque</url-pattern> 
+    </servlet-mapping> 
+
+
+
 
 </web-app>

@@ -61,10 +61,16 @@
 
 	window.onload = function(){
 
+          var i =0;
 	   var imgs = ['dofus1.png','Himouto.jpg','kiraitchi1.png','Tamagotchi_blue1.png'];
 
 	   var genImg = function(){
-	      $("#imgs").html("<img class=\"imgdemo\" src=\"img/"+imgs[Math.round(Math.random()*imgs.length-1)]+"\" />").css("opacity",0).animate({opacity:1},800);
+             if (i > 2) {
+              i =0;
+             } else {
+              i++
+             }
+	      $("#imgs").html("<img class=\"imgdemo\" src=\"img/"+imgs[i]+"\" />").css("opacity",0).animate({opacity:1},800);
 	   };
 	   var timer = setInterval(function(){ genImg(); }, 2000);
 	   genImg();
