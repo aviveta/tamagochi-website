@@ -56,7 +56,14 @@
         <url-pattern>/gestionU</url-pattern> 
     </servlet-mapping> 
 
-
+    <servlet>
+        <servlet-name>GestionBoutique</servlet-name>
+        <servlet-class>controleur.GestionBoutique</servlet-class>
+    </servlet>
+    <servlet-mapping> 
+        <servlet-name>GestionBoutique</servlet-name>
+        <url-pattern>/GestionBoutique</url-pattern> 
+    </servlet-mapping> 
 
 
 </web-app>
