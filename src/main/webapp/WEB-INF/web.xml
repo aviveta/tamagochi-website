@@ -62,9 +62,13 @@
     </servlet>
     <servlet-mapping> 
         <servlet-name>GestionBoutique</servlet-name>
-        <url-pattern>/GestionBoutique</url-pattern> 
+        <url-pattern>/gestionBoutique</url-pattern> 
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>Game</servlet-name>
+        <servlet-class>controleur.Game</servlet-class>
+    </servlet>
     <servlet-mapping> 
         <servlet-name>Game</servlet-name>
         <url-pattern>/game</url-pattern> 

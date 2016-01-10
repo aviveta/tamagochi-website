@@ -15,6 +15,7 @@ TamaGame.GAME_X = 800;
 TamaGame.GAME_Y = 400;
 TamaGame.MAX_PLAYERS = 4;
 TamaGame.VELOCITY = 700;
+TamaGame.IMG_FOLDER = 'game/img/';
 
 
 TamaGame.Player = function(game,id,infos) {
@@ -70,13 +71,13 @@ TamaGame.prototype = {
     
     preload : function() {
         for(var i = 0; i < TamaGame.MAX_PLAYERS ; i++) {
-            game.load.image('road'+(i+1),'img/road'+(i+1)+'.png');
+            game.load.image('road'+(i+1),TamaGame.IMG_FOLDER+'road'+(i+1)+'.png');
         }
-        game.load.image('obstacle','img/himouto.jpg');
-        game.load.image('p1','img/lovelin.png');
-        game.load.image('p2','img/lovelin.png');
-        game.load.image('p3','img/lovelin.png');
-        game.load.image('p4','img/lovelin.png');
+        game.load.image('obstacle',TamaGame.IMG_FOLDER+'himouto.jpg');
+        game.load.image('p1',TamaGame.IMG_FOLDER+'lovelin.png');
+        game.load.image('p2',TamaGame.IMG_FOLDER+'lovelin.png');
+        game.load.image('p3',TamaGame.IMG_FOLDER+'lovelin.png');
+        game.load.image('p4',TamaGame.IMG_FOLDER+'lovelin.png');
     },
 
 
