@@ -65,5 +65,10 @@
         <url-pattern>/GestionBoutique</url-pattern> 
     </servlet-mapping> 
 
+    <servlet-mapping> 
+        <servlet-name>Game</servlet-name>
+        <url-pattern>/game</url-pattern> 
+    </servlet-mapping> 
+
 
 </web-app>

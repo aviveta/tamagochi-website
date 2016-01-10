@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- @WebServlet("/gestionU")
+ @WebServlet("/gestionUtilisateur")
 // @WebServlet(asyncSupported = false, name = "GestionUtilisateur", urlPatterns = {"/gestionUtilisateur"})
 public class GestionUtilisateur extends HttpServlet {
 
@@ -35,7 +35,6 @@ public class GestionUtilisateur extends HttpServlet {
 			String mdp = request.getParameter("mdp");
 			f.ajoutJoueur(nom,prenom,email,mdp);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-
 		 }
 
 		response.setContentType("text/html");
