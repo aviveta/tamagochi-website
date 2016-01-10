@@ -29,15 +29,21 @@ public class Joueur {
   @GeneratedValue(strategy=GenerationType.AUTO)
   @Id
   int id;
-  String pseudo;
   int sexe;
+  String nom;
+  String prenom;
+  String email;
+  String mdp;
 
 
     
 
-  public Joueur (String pseudonyme,int s){
-    this.pseudo=pseudonyme;
-    this.sexe=s;
+  public Joueur (String nom,String prenom, String email, String mdp){
+    this.nom=nom;
+    this.prenom=prenom;
+    this.email=email;
+    this.mdp=mdp;
+    
 
   }
 
@@ -116,12 +122,36 @@ public class Joueur {
     this.sexe= nSexe;
   }
 
-  public String getPseudo(){
-    return this.pseudo;
+  public String getNom(){
+    return this.nom;
   }
 
-  public void setPseudo(String nPseudo){
-    this.pseudo = nPseudo;
+  public void setNom(String nNom){
+    this.nom =nNom;
+  }
+
+  public String getMdp(){
+    return this.mdp;
+  }
+
+  public void setMdp(String nMdp){
+    this.mdp =nMdp;
+  }
+
+  public String getPrenom(){
+    return this.prenom;
+  }
+
+  public void setPrenom(String nPrenom){
+    this.prenom =nPrenom;
+  }
+
+  public String getEmail(){
+    return this.email;
+  }
+
+  public void setEmail(String nEmail){
+    this.email =nEmail;
   }
 
   public Collection<Tamagochi> getTamas(){

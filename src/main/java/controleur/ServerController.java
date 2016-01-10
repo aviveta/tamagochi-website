@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// @WebServlet("/kebab")
+ @WebServlet("/kebab")
 public class ServerController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

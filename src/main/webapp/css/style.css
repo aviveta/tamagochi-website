@@ -1,0 +1,142 @@
+/* mon css */
+h1 {
+	text-align: center;
+}
+
+body {
+	min-height: 100%;
+}
+
+.jumbotron {
+}
+
+#body-container {
+	margin: 0;
+	background-color: rgba(0,0,0,0.1);
+	height: 100%;
+}
+
+/*navbar tweaks */
+.navbar {
+	background-color: rgba(241,241,241,0.3);
+	border-bottom: solid rgb(200,100,100);
+	border-radius: 0px;
+	margin-bottom: 0;
+}
+
+#inscription-container #formulaire-login{
+	margin-left: 5%;
+}
+
+#formulaire-login {
+	margin-left:auto;
+	margin-right: auto;
+	display: inline-block;
+}
+
+#kiraitchi {
+	width: auto;
+	height: 250px;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-left: 30px;
+}
+
+#home-presentation {
+	text-align: center;
+}
+
+#home-presentation img{
+	height: 150px;
+	width: auto;
+	border: thin rgba(51,51,51,0.3) solid;
+}
+
+footer {
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+#imgs {
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* inscription connection */
+#bouton_connection {
+	display: inline-block;
+	text-align: center;
+}
+
+#bouton_inscription {
+	display: inline-block;
+	text-align: center;
+}
+
+#lovelin {
+	width: 58%;
+	height: auto;
+}
+
+#inscription-formulaire {
+    display: inline-block;
+    width:40%;
+}
+
+#salut {
+    width: 55%;
+    margin-left : 4%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+#salut img {
+    display: inline-block;
+}
+
+#bulle {
+	height: auto;
+	width: 40%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.form-group {
+	width: 90%;
+}
+
+#envoyer {
+	margin-left: 58%;
+}
+
+/* gestion */
+#tama-gere {
+	width: 300px;
+	height: 400px;
+}
+
+#gauche {
+	display: inline-block;
+	width: 32%;
+}
+
+#centre {
+	display: inline-block;
+	width: 32%;
+	text-align: center;
+}
+
+#droite {
+	display: inline-block;
+	width: 32%;
+}
+
+.bouton-gerer {
+	width: 250px;
+	height: 90px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+}

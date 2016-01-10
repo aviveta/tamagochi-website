@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>InscrireMacaque</title>
+    <title>ConnecterMacaque</title>
 
 
     <!-- Bootstrap -->
@@ -57,53 +57,31 @@
 
       <!-- row -->
       <div class="row" id="inscription-container">
-        <div class="col-md-2">
+        <div class="col-md-3">
         </div>
-        <div class="col-md-9">
-          <!--<form class="form-signin" id="formulaire-login">
-            <h2 class="form-signin-heading">S'inscrire</h2>
-	    <label for="inputFirstname" class="sr-only">Nom</label>
-	    <input type="text" class="form-control" placeholder="Nom" required="" autofocus="">
-	    <label for="inputLastname" class="sr-only">Prénom</label>
-	    <input type="text" class="form-control" placeholder="Prénom" required="" autofocus="">
-	    <input type="text" class="form-control" placeholder="Adresse">
-	    <input type="text" class="form-control" placeholder="Code Postal">
-	    <input type="text" class="form-control" placeholder="Ville">
+        <div class="col-md-7">
+          <form class="form-signin" id="formulaire-login">
+            <h2 class="form-signin-heading">Se connecter</h2>
             <label for="inputEmail" class="sr-only">Email</label>
             <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
             <label for="inputPassword" class="sr-only">Mot de passe</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
-	    <button class="btn btn-lg btn-primary btn-block" type="submit">Envoyer !</button>
-          </form>-->
-          <form id="inscription-formulaire" method="Get">
-             <div class="form-group">
-                <label for="InputName1">Nom</label>
-                <input type="text" class="form-control" id="InputName1" placeholder="Nom" required="" autofocus="" name ="nom">
-             </div>
-             <div class="form-group">
-                <label for="InputName2">Prénom</label>
-                <input type="text" class="form-control" id="InputName2" placeholder="Prénom" required="" autofocus="" name ="prenom">
-             </div>
-             <div class="form-group">
-                <label for="InputEmail">Adresse Email</label>
-                <input type="email" class="form-control" id="InputEmail" placeholder="Email" required="" autofocus="" name ="email">
-             </div>
-             <div class="form-group">
-                <label for="InputPassword">Mot de passe</label>
-                <input type="password" class="form-control" id="InputPassword" placeholder="Mot de passe" required="" name ="mdp">
-             </div>
-             <button type="submit" id="envoyer" class="btn btn-lg btn-primary">Envoyer !</button>
-           </form>
-           <div id="salut" >
-             <img id="lovelin" src="img/lovelin.png"/>
-             <img id="bulle" src="img/bulle.png"/>
-           </div>
-         </div>
-         <div class="col-md-1"></div>
- </div>
- <!-- end row -->
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Se souvenir de moi
+              </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Envoyer !</button>
+          </form>
+          <img id="kiraitchi" src="img/kiraitchi.png"/>
+        </div>
+
+        <div class="col-md-2">
+        </div>
+      </div>
+      <!-- end row -->
     </div>
-      <!--end page-container -->
+    <!--end page-container -->
 
     <!-- footer -->
     <hr/>

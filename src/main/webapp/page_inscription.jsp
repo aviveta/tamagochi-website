@@ -92,6 +92,7 @@
                 <label for="InputPassword">Mot de passe</label>
                 <input type="password" class="form-control" id="InputPassword" placeholder="Mot de passe" required="" name ="mdp">
              </div>
+             <input type = "hidden" name = "a" value = "inscription"/>
              <button type="submit" id="envoyer" class="btn btn-lg btn-primary">Envoyer !</button>
            </form>
            <div id="salut" >

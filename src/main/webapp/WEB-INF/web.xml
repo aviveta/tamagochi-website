@@ -53,7 +53,7 @@
     </servlet>
     <servlet-mapping> 
         <servlet-name>GestionUtilisateur</servlet-name>
-        <url-pattern>/macaque</url-pattern> 
+        <url-pattern>/gestionU</url-pattern> 
     </servlet-mapping> 
 
 

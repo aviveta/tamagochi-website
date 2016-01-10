@@ -3,7 +3,8 @@ import java.util.*;
 
 import javax.ejb.Singleton;
 import javax.persistence.*;
-public class Facade{
+
+public class FacadeJoueurs{
 
   @PersistenceContext
   EntityManager em;
@@ -70,8 +71,8 @@ public class Facade{
 
   //Ajout dans les tables
 
-  public void ajoutJoueur(String pseudo, int sexe){
-    Joueur j= new Joueur(pseudo,sexe);
+  public void ajoutJoueur(String nom, String prenom,String email,String mdp){
+    Joueur j= new Joueur(nom,prenom,email,mdp);
     em.persist(j);
     joueurs.put(j.getId(),j);
 
