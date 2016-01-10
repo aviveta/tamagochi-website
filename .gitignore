@@ -1,6 +1,7 @@
 target
 *.class
 *.swp
+game/node_modules
 
 # Eclipse Core
 .project
