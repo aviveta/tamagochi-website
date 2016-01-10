@@ -146,3 +146,15 @@ footer {
 	width: 90%;
 	margin-left: 5%;
 }
+
+/* profil */
+.modifier {
+	display: inline-block;
+	margin-right: 5%;
+}
+
+#liste-infos {
+	width: 90%;
+	margin-left: 5%;
+}
+
