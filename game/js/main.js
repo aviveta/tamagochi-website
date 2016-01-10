@@ -1,47 +1,66 @@
 /******************* TAMAGAME ********************/
 
-var game = new Phaser.Game(800,400,Phaser.AUTO,'game');
+var game = new Phaser.Game(900,400,Phaser.AUTO,'game');
 
 var TamaGame = function() {
-    this.GAME_X = 400;
-    this.GAME_Y = 800;
     this.tamagochis = null; 
     this.players = null;
     this.roads = null;
+    
     this.obstaclesVelocity = 700;
     this.generatorTime = Phaser.Timer.SECOND*0.30;
 }
 
+/* Constants */
+TamaGame.GAME_X = 800;
+TamaGame.GAME_Y = 400;
+TamaGame.MAX_PLAYERS = 4;
+
     
-   //  http://www.html5gamedevs.com/topic/1598-sprite-inheritance/ //
+//  http://www.html5gamedevs.com/topic/1598-sprite-inheritance/
 
-// var TamaGame.Tamagochi = function(game,img,w,hp) {
-//     this.velocity = [1,1];
-//     this.weight = w || 50;
-//     this.hp = hp || 100;
-//     this.img = img;
-//     this.transparency = false;
-// }
 
-// var TamaGame.Player = function(game,infos) {
-//     this.name = infos.name || "player";
-//     this.score = 0;
+TamaGame.Player = function(game,id,infos) {
+    this.game = game;
+    var offset = 30;
+    var posX = (TamaGame.GAME_X/TamaGame.MAX_PLAYERS)*(id-1);
+    Phaser.Sprite.call(this, game, posX , TamaGame.GAME_Y/2 , infos.img);
     
-//     this.tamagochi = new Tamagochi(infos.img); 
-//     this.road = new Road();
-// }
+    this.id = id; //id is the number of the tamagochi
+    this.name = infos.name || "player";
+    this.score = 0;
+    
+    game.physics.enable(this,Phaser.Physics.ARCADE);
+    
+    this.enableBody = true;
+    this.body.immovable = true;
+    this.isTransparent = false;
+    this.scale.setTo(0.5,0.5);
+    var roadWidth = TamaGame.GAME_X/TamaGame.MAX_PLAYERS;
+    this.road = game.add.tileSprite(posX,0,roadWidth,TamaGame.GAME_Y,'road'+id);        
+    this.road.obstacles = [];
+    this.moving = false;
+    this.isTransparent = false;
+    this.overlap = false;
 
-// var TamaGame.Road = function(number,game) {
-//     this.number = number;
-//     this.animated = false;
-// }
+    game.add.existing(this);
+}
+
+
+TamaGame.Player.prototype = Object.create(Phaser.Sprite.prototype);
+TamaGame.Player.prototype.constructor = TamaGame.Player;
 
 TamaGame.prototype = {
     
     preload : function() {
-        game.load.image('road1','img/road1.png');
+        for(var i = 0; i < TamaGame.MAX_PLAYERS ; i++) {
+            game.load.image('road'+(i+1),'img/road'+(i+1)+'.png');
+        }
         game.load.image('obstacle','img/himouto.jpg');
         game.load.image('p1','img/lovelin.png');
+        game.load.image('p2','img/lovelin.png');
+        game.load.image('p3','img/lovelin.png');
+        game.load.image('p4','img/lovelin.png');
     },
 
 
@@ -60,24 +79,22 @@ TamaGame.prototype = {
          */
         
         // 4 roads, 4 players
-        this.player1 = this.game.add.sprite(10,250,'p1');
-        this.players.add(this.player1);
-        game.physics.enable(this.players,Phaser.Physics.ARCADE);
-        
-        this.player1.enableBody = true;
-        this.player1.body.immovable = true;
-        this.player1.isTransparent = false;
-        this.player1.scale.setTo(0.5,0.5);
-
-        //road
-        this.player1.road = game.add.tileSprite(0,0,800,400,'road1');        
-        roads.add(this.player1.road);
-        
-        this.player1.road.obstacles = this.obstacles;
-        this.player1.moving = false;
-        
-        var style = { font: "64px Arial", fill: "#ff0044" };
-        this.player1.score = game.add.text(300, 50, "0", style);
+            console.log("coquin3")
+        for(var nb = 0; nb < TamaGame.MAX_PLAYERS ; nb ++) {
+            var player = new TamaGame.Player(game,nb+1,{
+                img : "p"+(nb+1),
+                name : "p"+(nb+1),
+            }); 
+            this.players.add(player);
+            console.log("coquin3")
+        }
+        var offset = 30;
+        this.players.forEach(function(p){
+            roads.add(p.road); 
+            var style = { font: "42px Arial", fill: "#ff0044" };
+            var middleRoad = (TamaGame.GAME_X/TamaGame.MAX_PLAYERS)/2;
+            p.score = game.add.text(p.x + middleRoad, 50, "0", style);
+        });
         
         //creation des obstacles pour chaque road
         this.obstacleGenerator = game.time.events.loop(this.generatorTime,this.generateObstacles,this);
@@ -85,24 +102,27 @@ TamaGame.prototype = {
     },
             
     generateObstacles : function() {
-        if (this.player1.moving && this.player1.road.obstacles.children.length < 4) {
-            var obs = this.player1.road.obstacles.children;
-            var thereIsPlace = true;
-            
-            for(var i in obs) {
-                ob = obs[i];
-                if (ob.y <= this.GAME_Y/3) {
-                    thereIsPlace = false;
-                    break;
+        var _this = this;
+        //for each player, we check if we can make an obstacle
+        this.players.forEach(function(p){
+            if (p.moving && p.road.obstacles.length < 4) {
+                var obs = p.road.obstacles;
+                var thereIsPlace = true;
+                
+                for(var i in obs) {
+                    ob = obs[i];
+                    if (ob.y <= TamaGame.GAME_Y/3) {
+                        thereIsPlace = false;
+                        break;
+                    }
                 }
-            };
-            var random = parseInt(Math.random()*3) % 2 == 0; 
-            console.log(random);
-            if (thereIsPlace && random) {
-                // this.player1.road.createObstacle();
-                this.createObstacle(this.players.children[0]);
+                var random = parseInt(Math.random()*3) % 2 == 0; 
+                if (thereIsPlace && random) {
+                    // this.player1.road.createObstacle();
+                    _this.createObstacle(p);
+                }
             }
-        }
+        });
     },
 
     update : function() {
@@ -123,26 +143,27 @@ TamaGame.prototype = {
         
         //activer la transparence si spacebar
         if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-            this.player1.isTransparent = true;
+            this.players.children[0].isTransparent = true;
             //timer pendant lequel le joueur est invulnerable?
-            console.log("ok")
         }
         
         if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-            var a = this.player1.body.touching.up;
-            if ( !a && !this.player1.overlap || (this.player1.overlap && this.player1.isTransparent) ) {
+            var player = this.players.children[0];
+            var a = player.body.touching.up;
+            
+            if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
                 //road move down
                 // player1.road.step();
                 //step -> creation d'obstacles, animation de descente
                 // this.player1.road.animate();
-                this.player1.road.tilePosition.y += 5;
+                player.road.tilePosition.y += 5;
                 //set velocity aux obstacles, et si road move pas, on la met a 0
-                this.player1.road.obstacles.forEach(function(item){
+                player.road.obstacles.forEach(function(item){
                     item.body.velocity.y = this.obstaclesVelocity;
                 },this);
                 //score
-                this.player1.score.text = parseInt(this.player1.score.text)+2;
-                this.player1.moving = true;
+                player.score.text = parseInt(this.players.children[0].score.text)+2;
+                player.moving = true;
             }
         }
         
@@ -168,7 +189,7 @@ TamaGame.prototype = {
     },
     
     render : function() {
-         // game.debug.body(this.player1);
+         game.debug.body(this.players);
     }
 };
 
