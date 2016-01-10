@@ -140,3 +140,9 @@ footer {
 	display: block;
 	text-align: center;
 }
+
+/* boutique */
+#liste-objets {
+	width: 90%;
+	margin-left: 5%;
+}
