@@ -2,7 +2,7 @@ target
 *.class
 *.swp
 game/node_modules
-
+.DS_Store
 # Eclipse Core
 .project
 

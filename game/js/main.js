@@ -7,7 +7,6 @@ var TamaGame = function() {
     this.players = null;
     this.roads = null;
     
-    this.obstaclesVelocity = 700;
     this.generatorTime = Phaser.Timer.SECOND*0.30;
 }
 
@@ -15,9 +14,7 @@ var TamaGame = function() {
 TamaGame.GAME_X = 800;
 TamaGame.GAME_Y = 400;
 TamaGame.MAX_PLAYERS = 4;
-
-    
-//  http://www.html5gamedevs.com/topic/1598-sprite-inheritance/
+TamaGame.VELOCITY = 700;
 
 
 TamaGame.Player = function(game,id,infos) {
@@ -25,23 +22,31 @@ TamaGame.Player = function(game,id,infos) {
     var offset = 30;
     var posX = (TamaGame.GAME_X/TamaGame.MAX_PLAYERS)*(id-1);
     Phaser.Sprite.call(this, game, posX , TamaGame.GAME_Y/2 , infos.img);
-    
-    this.id = id; //id is the number of the tamagochi
+
+    /* player information */
+    this.id = id; 
     this.name = infos.name || "player";
     this.score = 0;
     
     game.physics.enable(this,Phaser.Physics.ARCADE);
     
+    /* game variables */
     this.enableBody = true;
     this.body.immovable = true;
-    this.isTransparent = false;
     this.scale.setTo(0.5,0.5);
-    var roadWidth = TamaGame.GAME_X/TamaGame.MAX_PLAYERS;
-    this.road = game.add.tileSprite(posX,0,roadWidth,TamaGame.GAME_Y,'road'+id);        
-    this.road.obstacles = [];
+    
     this.moving = false;
     this.isTransparent = false;
     this.overlap = false;
+    
+    /* road creation */
+    
+    var roadWidth = TamaGame.GAME_X/TamaGame.MAX_PLAYERS;
+    this.road = game.add.tileSprite(posX,0,roadWidth,TamaGame.GAME_Y,'road'+id);        
+    this.road.player = this;
+    this.road.obstacles = [];
+    
+
 
     game.add.existing(this);
 }
@@ -49,6 +54,17 @@ TamaGame.Player = function(game,id,infos) {
 
 TamaGame.Player.prototype = Object.create(Phaser.Sprite.prototype);
 TamaGame.Player.prototype.constructor = TamaGame.Player;
+
+TamaGame.Player.prototype.move = function() {
+        //do one step on the road
+        this.road.tilePosition.y += 5;
+        //set velocity aux obstacles, et si road move pas, on la met a 0
+        this.road.obstacles.forEach(function(item){
+            item.body.velocity.y = TamaGame.VELOCITY;
+        },this);
+    
+        this.moving = true;
+}
 
 TamaGame.prototype = {
     
@@ -79,14 +95,12 @@ TamaGame.prototype = {
          */
         
         // 4 roads, 4 players
-            console.log("coquin3")
         for(var nb = 0; nb < TamaGame.MAX_PLAYERS ; nb ++) {
             var player = new TamaGame.Player(game,nb+1,{
                 img : "p"+(nb+1),
                 name : "p"+(nb+1),
             }); 
             this.players.add(player);
-            console.log("coquin3")
         }
         var offset = 30;
         this.players.forEach(function(p){
@@ -140,8 +154,7 @@ TamaGame.prototype = {
             p.overlap = true;
         });
 
-        
-        //activer la transparence si spacebar
+        /* INPUT HANDLERS */
         if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
             this.players.children[0].isTransparent = true;
             //timer pendant lequel le joueur est invulnerable?
@@ -152,40 +165,49 @@ TamaGame.prototype = {
             var a = player.body.touching.up;
             
             if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
-                //road move down
-                // player1.road.step();
-                //step -> creation d'obstacles, animation de descente
-                // this.player1.road.animate();
-                player.road.tilePosition.y += 5;
-                //set velocity aux obstacles, et si road move pas, on la met a 0
-                player.road.obstacles.forEach(function(item){
-                    item.body.velocity.y = this.obstaclesVelocity;
-                },this);
-                //score
-                player.score.text = parseInt(this.players.children[0].score.text)+2;
-                player.moving = true;
+                player.move();
+                player.score.text = parseInt(player.score.text)+2;
             }
         }
+        //player2
+        if (game.input.keyboard.isDown(Phaser.Keyboard.S)){
+            this.players.children[1].isTransparent = true;
+            //timer pendant lequel le joueur est invulnerable?
+        }
         
+        if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
+            var player = this.players.children[1];
+            var a = player.body.touching.up;
+            
+            if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
+                player.move();
+                player.score.text = parseInt(player.score.text)+2;
+            }
+        }
+
+        /* END INPUT HANDLER */
 
         //destruction des objets en dehors de la zone
         this.obstacles.forEach(function(ob){
             if (!ob.alive) {
+                var index = ob.player.road.obstacles.indexOf(ob);
+                ob.player.road.obstacles.splice(index,1);
                 ob.destroy();
             } 
-        });
+        },this);
     },
 
     createObstacle : function(player) {
-        /*random position*/
         var x = player.x;
-        var ob = game.add.sprite(x,-50,'obstacle');
+        var ob = game.add.sprite(x,0,'obstacle');
         ob.scale.y = 0.6;
         this.obstacles.add(ob);
         game.physics.enable(this.obstacles,Phaser.Physics.ARCADE);
         ob.body.bounce.setTo(0);
         ob.checkWorldBounds = true;
         ob.outOfBoundsKill = true;
+        ob.player = player;
+        player.road.obstacles.push(ob);
     },
     
     render : function() {
@@ -195,9 +217,4 @@ TamaGame.prototype = {
 
 
 game.state.add('Game',TamaGame,true);
-
-
-
-
-
 
