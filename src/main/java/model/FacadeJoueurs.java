@@ -9,39 +9,39 @@ public class FacadeJoueurs{
 
   @PersistenceContext
   EntityManager em;
-  int idJoueur=0;
-  int idTama=0;
-  int idObj= 0;
-  HashMap<Integer,Joueur> joueurs=new HashMap<Integer,Joueur>();
-  HashMap<Integer,Tamagochi> tama=new HashMap<Integer,Tamagochi>();
-  HashMap<Integer,Obj> objets=new HashMap<Integer,Obj>();
-  Boutique b = new Boutique();
+  // int idJoueur=0;
+  // int idTama=0;
+  // int idObj= 0;
+  // HashMap<Integer,Joueur> joueurs=new HashMap<Integer,Joueur>();
+  // HashMap<Integer,Tamagochi> tama=new HashMap<Integer,Tamagochi>();
+  // HashMap<Integer,Obj> objets=new HashMap<Integer,Obj>();
+  // Boutique b = new Boutique();
  
   //getter and setter
   
-  public int getIdJoueur() {
-		return idJoueur;
-	}
+  // public int getIdJoueur() {
+		// return idJoueur;
+	// }
 
-  public int getIdTama() {
-		return idTama;
-	}
+  // public int getIdTama() {
+		// return idTama;
+	// }
 
-  public int getIdObj() {
-		return idObj;
-	}
+  // public int getIdObj() {
+		// return idObj;
+	// }
 
-  public void setIdJoueur(int idJ) {
-		this.idJoueur = idJ;
-	}
+  // public void setIdJoueur(int idJ) {
+		// this.idJoueur = idJ;
+	// }
   
-  public void setIdTama(int idT) {
-		this.idTama = idT;
-	}
+  // public void setIdTama(int idT) {
+		// this.idTama = idT;
+	// }
 
-  public void setIdObj(int idO) {
-		this.idObj = idO;
-	}
+  // public void setIdObj(int idO) {
+		// this.idObj = idO;
+	// }
 
   public Collection<Joueur> getJoueurs() {
 		return em.createQuery("from Joueur", Joueur.class).getResultList();
@@ -58,24 +58,24 @@ public class FacadeJoueurs{
 		
   }
 
-  public void setJoueurs(HashMap<Integer, Joueur> jrs) {
-		this.joueurs = jrs;
-  }
+  // public void setJoueurs(HashMap<Integer, Joueur> jrs) {
+		// this.joueurs = jrs;
+  // }
 
-  public void setTama(HashMap<Integer, Tamagochi> tas) {
-		this.tama = tas;
-  }
+  // public void setTama(HashMap<Integer, Tamagochi> tas) {
+		// this.tama = tas;
+  // }
 
-  public void setObjets(HashMap<Integer, Obj> o) {
-		this.objets = o;
-  }
+  // public void setObjets(HashMap<Integer, Obj> o) {
+		// this.objets = o;
+  // }
 
   //Ajout dans les tables
 
   public void ajoutJoueur(String nom, String prenom,String email,String mdp){
     Joueur j= new Joueur(nom,prenom,email,mdp);
     em.persist(j);
-    joueurs.put(j.getId(),j);
+    // joueurs.put(j.getId(),j);
 
   }
 //Ajouter un Tamagoshi à un joueur
@@ -83,7 +83,7 @@ public class FacadeJoueurs{
     Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
     Tamagochi t= new Tamagochi(nom,sexe,0);
     em.persist(t);
-    tama.put(t.getId(),t);
+    // tama.put(t.getId(),t);
     j.associer(t);
     t.setProp(j);
 
@@ -93,8 +93,8 @@ public class FacadeJoueurs{
   public void ajoutObj(String nom,int prix){
     Obj o= new Obj(nom,prix);
     em.persist(o);
-    objets.put(o.getId(),o);
-    b.ajouterO(o);
+    // objets.put(o.getId(),o);
+    // b.ajouterO(o);
 
   }
 
@@ -116,8 +116,8 @@ public class FacadeJoueurs{
     Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
     Obj o = (Obj) em.find(Obj.class,idObj);
     j.ajouterO(o);
-    o.setProp(j);
-    b.supprO(o);
+    // o.setProp(j);
+    // b.supprO(o);
 
 
   }
@@ -135,8 +135,8 @@ public class FacadeJoueurs{
   public void vendObj(int idJoueur, int idObj, int prix){
     Obj o= (Obj) em.find(Obj.class, idObj);
     Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
-    o.setPrix(prix);
-    b.ajouterO(o);
+    // o.setPrix(prix);
+    // b.ajouterO(o);
     j.supprO(o);
 
 
