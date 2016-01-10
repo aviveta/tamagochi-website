@@ -4,6 +4,7 @@ import java.util.*;
 import javax.ejb.Singleton;
 import javax.persistence.*;
 
+@Singleton
 public class FacadeJoueurs{
 
   @PersistenceContext
