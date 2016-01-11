@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
  // @WebServlet("/gestionUtilisateur")
 // @WebServlet(asyncSupported = false, name = "GestionUtilisateur", urlPatterns = {"/gestionUtilisateur"})
@@ -28,7 +29,7 @@ public class GestionUtilisateur extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+      HttpSession session = request.getSession(true);	
 		 	// response.sendRedirect("inscription.jsp");
 
 		if (request.getParameter("a").equals("inscription")) {
@@ -42,6 +43,10 @@ public class GestionUtilisateur extends HttpServlet {
       Collection<Joueur> listesJoueurs = f.getJoueurs();
       request.setAttribute("joueurs",listesJoueurs);
 			request.getRequestDispatcher("users.jsp").forward(request, response);
+
+      session.setAttribute("joueur", email) ;
+      
+      
 		 }
 
 		response.setContentType("text/html");

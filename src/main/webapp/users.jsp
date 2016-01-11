@@ -11,4 +11,6 @@
     <%= joueur.getNom() %>
 <% } %>
     
+<%= request.getSession(false).getAttribute("joueur") %>;
+
 <%= getServletContext().getInitParameter("webmaster") %>
