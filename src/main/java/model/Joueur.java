@@ -36,6 +36,7 @@ public class Joueur {
   String mdp;
 
 
+    public Joueur() {}
     
 
   public Joueur (String nom,String prenom, String email, String mdp){

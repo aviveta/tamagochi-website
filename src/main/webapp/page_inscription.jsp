@@ -75,7 +75,7 @@
             <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
 	    <button class="btn btn-lg btn-primary btn-block" type="submit">Envoyer !</button>
           </form>-->
-          <form id="inscription-formulaire" method="Get">
+          <form id="inscription-formulaire" method="POST" action="/tama-game/gestionUtilisateur">
              <div class="form-group">
                 <label for="InputName1">Nom</label>
                 <input type="text" class="form-control" id="InputName1" placeholder="Nom" required="" autofocus="" name ="nom">

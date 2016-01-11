@@ -2,8 +2,8 @@ package controleur;
 
 import java.io.IOException;
 
-import model.FacadeJoueurs;
-
+import model.*;
+import java.util.*;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- @WebServlet("/gestionUtilisateur")
+ // @WebServlet("/gestionUtilisateur")
 // @WebServlet(asyncSupported = false, name = "GestionUtilisateur", urlPatterns = {"/gestionUtilisateur"})
+
+@WebServlet("/gestionUtilisateur")
 public class GestionUtilisateur extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -27,14 +29,19 @@ public class GestionUtilisateur extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		 	// response.sendRedirect("inscription.jsp");
+
 		if (request.getParameter("a").equals("inscription")) {
-		 	response.sendRedirect("inscription.jsp");
 		 	String nom = request.getParameter("nom");
 			String prenom = request.getParameter("prenom");
 			String email = request.getParameter("email");
 			String mdp = request.getParameter("mdp");
 			f.ajoutJoueur(nom,prenom,email,mdp);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+
+      
+      Collection<Joueur> listesJoueurs = f.getJoueurs();
+      request.setAttribute("joueurs",listesJoueurs);
+			request.getRequestDispatcher("users.jsp").forward(request, response);
 		 }
 
 		response.setContentType("text/html");
@@ -47,8 +54,10 @@ public class GestionUtilisateur extends HttpServlet {
 		// 	request.setAttribute("class-alert","alert-success");
 		// 	request.getRequestDispatcher("jsp/index.jsp").forward(request,response);		
 		// }
-		response.setContentType("text/html");
-		request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
+		// response.setContentType("text/html");
+		// request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
+
+      doGet(request,response);
 	}
 
 }

@@ -17,9 +17,7 @@ public class ServerController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		response.getWriter().println("<html><body>kebab</body></html>");
-		// response.sendRedirect("../../../../../../mockups/index2.html");
+			request.getRequestDispatcher("page_inscription.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

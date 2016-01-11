@@ -53,7 +53,7 @@
     </servlet>
     <servlet-mapping> 
         <servlet-name>GestionUtilisateur</servlet-name>
-        <url-pattern>/gestionU</url-pattern> 
+        <url-pattern>/gestionUtilisateur</url-pattern> 
     </servlet-mapping> 
 
     <servlet>
