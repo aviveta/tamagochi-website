@@ -15,7 +15,7 @@ TamaGame.GAME_X = 800;
 TamaGame.GAME_Y = 400;
 TamaGame.MAX_PLAYERS = 4;
 TamaGame.VELOCITY = 700;
-TamaGame.IMG_FOLDER = 'game/img/';
+TamaGame.IMG_FOLDER = 'public/game/img/';
 
 
 TamaGame.Player = function(game,id,infos) {
