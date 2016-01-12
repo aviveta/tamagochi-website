@@ -42,7 +42,7 @@ public class GestionUtilisateur extends HttpServlet {
       
       Collection<Joueur> listesJoueurs = f.getJoueurs();
       request.setAttribute("joueurs",listesJoueurs);
-			request.getRequestDispatcher("users.jsp").forward(request, response);
+			request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
 
       session.setAttribute("joueur", email) ;
       

@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- @WebServlet("/kebab")
-public class ServerController extends HttpServlet {
+ @WebServlet("/")
+public class Home extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public ServerController() {
+	public Home() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.getRequestDispatcher("jsp/page_inscription.jsp").forward(request, response);
-	}
+      request.setAttribute("username",request.getSession(true).getAttribute("joueur")) ;
+      request.getRequestDispatcher("jsp/index2.jsp").forward(request, response);
+  }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		response.getWriter().println("<html><body>kebab</body></html>");
+		doGet(request,response);
 	}
 }

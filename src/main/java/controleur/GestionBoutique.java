@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- @WebServlet("/GestionBoutique")
+ @WebServlet("/boutique")
 public class GestionBoutique extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +17,7 @@ public class GestionBoutique extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("game.jsp").forward(request, response);
+		request.getRequestDispatcher("jsp/boutique.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

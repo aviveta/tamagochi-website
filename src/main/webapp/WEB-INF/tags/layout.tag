@@ -1,21 +1,20 @@
+<%@tag description="Overall Page template" pageEncoding="UTF-8"%>
+<%@attribute name="username"  %>
+<%@attribute name="content" fragment="true" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Macaque</title>
-
-
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/tama-game/public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/tama-game/public/css/style.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
-
+    <title>${title}</title>
   </head>
-  <body>
-
+    <body>
     <nav class="navbar">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,56 +25,34 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index2.html">Home</a>
+          <a class="navbar-brand" href="/tama-game/">Home</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Inscription / Se connecter <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Jouer</a></li>
-            <li><a href="boutique.html">Boutique</a></li>
+            <li class="active"><a href="/tama-game/inscription">Inscription / Se connecter <span class="sr-only">(current)</span></a></li>
+            <li><a href="/tama-game/game">Jouer</a></li>
+            <li><a href="/tama-game/boutique">Boutique</a></li>
           </ul>
+          <c:if test="${not empty username}">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">photo <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> ${username} <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="gestion.html">Gérer</a></li>
-                <li><a href="#">Deconnexion</a></li>
+                <li><a href="/tama-game/gestionTamagochis/">Gérer</a></li>
+                <li><a href="/tama-game/logout">Deconnexion</a></li>
               </ul>
             </li>
           </ul>
+          </c:if>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-
     <!-- page-container contient tout le contenu relatif a la page courante -->
     <div id="page-container">
-      <div class="jumbotron">
-        <h1>Bienvenue !</h1>
-      </div>
-
-      <!-- row -->
-      <div class="row" id="inscription-container">
-        <div class="col-md-2">
-	</div>
-        <div class="col-md-3" id="bouton_inscription">
-          <h2 class="form-signin-heading">Pour s'inscrire</h2><br />
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Cliquez ici</button>
-	</div>
-	<img class="col-md-2" id="kiraitchi" src="img/vintage.png" />
-	<div class="col-md-3" id="bouton_connection">
-	   <h2 class="form-signin-heading">Pour se connecter</h2><br />
-	   <button class="btn btn-lg btn-primary btn-block" type="submit">Cliquez ici</button>
-	</div>
-	<div class="col-md-2">
-	</div>
-
-      <!-- end row -->
+          <jsp:invoke fragment="content"/>
     </div>
-      <!--end page-container -->
-
-    <!-- footer -->
     <hr/>
     <footer>
       <p class="pull-right"><a href="#aviveta">Aviveta Team</a></p>
@@ -86,6 +63,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  </body>
-
+    
+    </body>
 </html>

@@ -62,7 +62,7 @@
     </servlet>
     <servlet-mapping> 
         <servlet-name>GestionBoutique</servlet-name>
-        <url-pattern>/gestionBoutique</url-pattern> 
+        <url-pattern>/boutique</url-pattern> 
     </servlet-mapping> 
 
     <servlet>
@@ -74,5 +74,22 @@
         <url-pattern>/game</url-pattern> 
     </servlet-mapping> 
 
+    <servlet>
+        <servlet-name>Inscription</servlet-name>
+        <servlet-class>controleur.Inscription</servlet-class>
+    </servlet>
+    <servlet-mapping> 
+        <servlet-name>Inscription</servlet-name>
+        <url-pattern>/inscription</url-pattern> 
+    </servlet-mapping> 
 
+    <!-- <servlet> -->
+    <!--     <servlet-name>Home</servlet-name> -->
+    <!--     <servlet-class>controleur.Home</servlet-class> -->
+    <!-- </servlet> -->
+    <!-- <servlet-mapping> --> 
+    <!--     <servlet-name>Home</servlet-name> -->
+    <!--     <url-pattern>/</url-pattern> --> 
+    <!-- </servlet-mapping> --> 
+    
 </web-app>

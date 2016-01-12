@@ -17,10 +17,9 @@ public class Game extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.setAttribute("joueur",request.getSession(true).getAttribute("joueur")) ;
-          
-		request.getRequestDispatcher("game.jsp").forward(request, response);
-	}
+      request.setAttribute("username",request.getSession(true).getAttribute("joueur")) ;
+      request.getRequestDispatcher("jsp/game.jsp").forward(request, response);
+  }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request,response);
