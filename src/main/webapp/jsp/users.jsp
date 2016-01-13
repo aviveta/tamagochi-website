@@ -1,16 +1,18 @@
-<%@page import="java.util.Collection"%>
-<%@page import="model.Joueur"%>
-<%@page import="model.FacadeJoueurs"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
 
-<%
-    Collection<Joueur> joueurs = (Collection) request.getAttribute("joueurs");
-    for (Joueur joueur : joueurs ) { %>
-    <%= joueur.getNom() %>
-<% } %>
-    
-<%= request.getSession(false).getAttribute("joueur") %>;
+    <t:layout>
+        <jsp:attribute name="content">
+        <ul>
+        <c:forEach items="${joueurs}" var="i">
+        <li><c:out value="${i}"/></li>
+        </c:forEach>
+<c:forEach var="i" begin="1" end="5">
+   Item <c:out value="${i}"/><p>
+</c:forEach>
+        </ul>
+        </jsp:attribute>
 
-<%= getServletContext().getInitParameter("webmaster") %>
+</t:layout>
+

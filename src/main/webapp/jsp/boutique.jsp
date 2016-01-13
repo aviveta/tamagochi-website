@@ -11,7 +11,7 @@
 <div class="jumbotron">
   <h1>Boutique</h1>
   </div>
-  <center><img  id="boutique1" src="img/money.jpg" /></center>
+  <center><img  id="boutique1" src="public/img/money.jpg" /></center>
 <!-- row -->
 <div class="row" id="liste-objets">
   <ul class="list-group">

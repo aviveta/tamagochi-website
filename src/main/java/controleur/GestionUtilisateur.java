@@ -12,57 +12,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.*;
 
- // @WebServlet("/gestionUtilisateur")
+// @WebServlet("/gestionUtilisateur")
 // @WebServlet(asyncSupported = false, name = "GestionUtilisateur", urlPatterns = {"/gestionUtilisateur"})
 
 @WebServlet("/gestionUtilisateur")
 public class GestionUtilisateur extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-	@EJB
-	FacadeJoueurs f;
+      private static final long serialVersionUID = 1L;
+      @EJB
+      FacadeJoueurs f;
 
-	public GestionUtilisateur() {
-		super();
-	}
+      public GestionUtilisateur() {
+	    super();
+      }
 
+      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    HttpSession session = request.getSession(true);	
 
+	    if (request.getParameter("a").equals("inscription")) {
+		  String nom = request.getParameter("nom");
+		  String prenom = request.getParameter("prenom");
+		  String email = request.getParameter("email");
+		  String mdp = request.getParameter("mdp");
+		  f.ajoutJoueur(nom,prenom,email,mdp);
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      HttpSession session = request.getSession(true);	
-		 	// response.sendRedirect("inscription.jsp");
+		  session.setAttribute("username", email) ;
 
-		if (request.getParameter("a").equals("inscription")) {
-		 	String nom = request.getParameter("nom");
-			String prenom = request.getParameter("prenom");
-			String email = request.getParameter("email");
-			String mdp = request.getParameter("mdp");
-			f.ajoutJoueur(nom,prenom,email,mdp);
+		  Collection<Joueur> listesJoueurs = f.getJoueurs();
+		  request.setAttribute("joueurs",listesJoueurs);
+		  request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
+	    }
+	    
+      }
 
-      
-      Collection<Joueur> listesJoueurs = f.getJoueurs();
-      request.setAttribute("joueurs",listesJoueurs);
-			request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
+      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    // if (request.getParameter("a").equals("enregistrer")) {
+	    // 	request.setAttribute("alert","Inscription reussie");
+	    // 	request.setAttribute("class-alert","alert-success");
+	    // 	request.getRequestDispatcher("jsp/index.jsp").forward(request,response);		
+	    // }
+	    // response.setContentType("text/html");
+	    // request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
 
-      session.setAttribute("joueur", email) ;
-      
-      
-		 }
-
-		response.setContentType("text/html");
-		response.getWriter().println("<html><body>IAJIDJSLKJSDKkebab</body></html>");
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// if (request.getParameter("a").equals("enregistrer")) {
-		// 	request.setAttribute("alert","Inscription reussie");
-		// 	request.setAttribute("class-alert","alert-success");
-		// 	request.getRequestDispatcher("jsp/index.jsp").forward(request,response);		
-		// }
-		// response.setContentType("text/html");
-		// request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
-
-      doGet(request,response);
-	}
+	    doGet(request,response);
+      }
 
 }

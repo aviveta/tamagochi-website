@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
- @WebServlet("/")
+ // @WebServlet("/")
 public class Home extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +17,7 @@ public class Home extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.setAttribute("username",request.getSession(true).getAttribute("joueur")) ;
+      request.setAttribute("username",request.getSession(true).getAttribute("username")) ;
       request.getRequestDispatcher("jsp/index2.jsp").forward(request, response);
   }
 
