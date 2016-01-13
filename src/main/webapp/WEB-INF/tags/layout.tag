@@ -1,7 +1,7 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@attribute name="username"  %>
 <%@attribute name="content" fragment="true" %>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -31,20 +31,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/tama-game/inscription">Inscription / Se connecter <span class="sr-only">(current)</span></a></li>
-            <li><a href="/tama-game/game">Jouer</a></li>
-            <li><a href="/tama-game/boutique">Boutique</a></li>
+            <c:if test="${empty username}">
+              <li class="active"><a href="/tama-game/inscription">Inscription / Se connecter <span class="sr-only">(current)</span></a></li>
+            </c:if>
+            <c:if test="${not empty username}">
+              <li><a href="/tama-game/game">Jouer</a></li>
+              <li><a href="/tama-game/boutique">Boutique</a></li>
+            </c:if>
           </ul>
           <c:if test="${not empty username}">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> ${username} <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/tama-game/gestionTamagochis/">Gérer</a></li>
-                <li><a href="/tama-game/logout">Deconnexion</a></li>
-              </ul>
-            </li>
-          </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> ${username} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/tama-game/gestionTamagochis/">Gérer</a></li>
+                  <li><a href="/tama-game/logout">Deconnexion</a></li>
+                </ul>
+              </li>
+            </ul>
           </c:if>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

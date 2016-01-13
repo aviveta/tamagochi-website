@@ -1,6 +1,6 @@
 /******************* TAMAGAME ********************/
 
-var game = new Phaser.Game(900,400,Phaser.AUTO,'game');
+var game = new Phaser.Game(900,400,Phaser.AUTO,'tama-game');
 
 var TamaGame = function() {
     this.tamagochis = null; 

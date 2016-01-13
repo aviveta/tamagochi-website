@@ -10,6 +10,7 @@
         kebab
         <script src="/tama-game/public/game/js/phaser.min.js"></script>
         <script src="/tama-game/public/game/js/main.js"></script>
+        <div id="tama-game" ></div>
      </jsp:attribute>
  
 </t:layout>
