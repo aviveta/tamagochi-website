@@ -2,6 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@attribute name="username"  %>
 <%@attribute name="content" fragment="true" %>
+<%@attribute name="head_content" fragment="true" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,6 +12,7 @@
     <!-- Bootstrap -->
     <link href="/tama-game/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="/tama-game/public/css/style.css" rel="stylesheet">
+    <jsp:invoke fragment="head_content"/>
 
     <title>${title}</title>
   </head>

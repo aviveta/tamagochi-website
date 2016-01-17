@@ -1,0 +1,15 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
+
+
+    <t:layout>
+        <jsp:attribute name="content">
+        <ul>
+        <c:forEach items="${joueurs}" var="joueur">
+        <li><c:out value="${joueur}"/></li>
+        </c:forEach>
+        </ul>
+        </jsp:attribute>
+
+</t:layout>
+

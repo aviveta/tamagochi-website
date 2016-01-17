@@ -34,15 +34,19 @@ public class GestionUtilisateur extends HttpServlet {
 		  String prenom = request.getParameter("prenom");
 		  String email = request.getParameter("email");
 		  String mdp = request.getParameter("mdp");
-		  f.ajoutJoueur(nom,prenom,email,mdp);
+		  f.ajoutJoueur(nom,prenom,email,mdp); //retourne le joueur cree
 
-		  session.setAttribute("username", email) ;
+		  session.setAttribute("username", prenom) ;
+		  session.setAttribute("mail", email) ;
 
 		  Collection<Joueur> listesJoueurs = f.getJoueurs();
 		  request.setAttribute("joueurs",listesJoueurs);
 		  request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
 	    }
 	    
+      if (request.getParameter("a").equals("profil")) {
+          request.getRequestDispatcher("jsp/profil.jsp").forward(request, response);
+	    }
       }
 
       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

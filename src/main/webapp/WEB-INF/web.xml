@@ -37,50 +37,50 @@
 
     </context-param>
 
-    <servlet>
-        <servlet-name>ServerController</servlet-name>
-        <servlet-class>controleur.ServerController</servlet-class>
-    </servlet>
-    <servlet-mapping> 
-        <servlet-name>ServerController</servlet-name> 
-        <url-pattern>/kebab</url-pattern> 
-    </servlet-mapping> 
+    <!-- <servlet> -->
+    <!--     <servlet-name>ServerController</servlet-name> -->
+    <!--     <servlet-class>controleur.ServerController</servlet-class> -->
+    <!-- </servlet> -->
+    <!-- <servlet-mapping> --> 
+    <!--     <servlet-name>ServerController</servlet-name> --> 
+    <!--     <url-pattern>/kebab</url-pattern> --> 
+    <!-- </servlet-mapping> --> 
 
-    <servlet>
-        <servlet-name>GestionUtilisateur</servlet-name>
-        <servlet-class>controleur.GestionUtilisateur</servlet-class>
-    </servlet>
-    <servlet-mapping> 
-        <servlet-name>GestionUtilisateur</servlet-name>
-        <url-pattern>/gestionUtilisateur</url-pattern> 
-    </servlet-mapping> 
+    <!-- <servlet> -->
+    <!--     <servlet-name>GestionUtilisateur</servlet-name> -->
+    <!--     <servlet-class>controleur.GestionUtilisateur</servlet-class> -->
+    <!-- </servlet> -->
+    <!-- <servlet-mapping> --> 
+    <!--     <servlet-name>GestionUtilisateur</servlet-name> -->
+    <!--     <url-pattern>/gestionUtilisateur</url-pattern> --> 
+    <!-- </servlet-mapping> --> 
 
-    <servlet>
-        <servlet-name>GestionBoutique</servlet-name>
-        <servlet-class>controleur.GestionBoutique</servlet-class>
-    </servlet>
-    <servlet-mapping> 
-        <servlet-name>GestionBoutique</servlet-name>
-        <url-pattern>/boutique</url-pattern> 
-    </servlet-mapping> 
+    <!-- <servlet> -->
+    <!--     <servlet-name>GestionBoutique</servlet-name> -->
+    <!--     <servlet-class>controleur.GestionBoutique</servlet-class> -->
+    <!-- </servlet> -->
+    <!-- <servlet-mapping> --> 
+    <!--     <servlet-name>GestionBoutique</servlet-name> -->
+    <!--     <url-pattern>/boutique</url-pattern> --> 
+    <!-- </servlet-mapping> --> 
 
-    <servlet>
-        <servlet-name>Game</servlet-name>
-        <servlet-class>controleur.Game</servlet-class>
-    </servlet>
-    <servlet-mapping> 
-        <servlet-name>Game</servlet-name>
-        <url-pattern>/game</url-pattern> 
-    </servlet-mapping> 
+    <!-- <servlet> -->
+    <!--     <servlet-name>Game</servlet-name> -->
+    <!--     <servlet-class>controleur.Game</servlet-class> -->
+    <!-- </servlet> -->
+    <!-- <servlet-mapping> --> 
+    <!--     <servlet-name>Game</servlet-name> -->
+    <!--     <url-pattern>/game</url-pattern> --> 
+    <!-- </servlet-mapping> --> 
 
-    <servlet>
-        <servlet-name>Inscription</servlet-name>
-        <servlet-class>controleur.Inscription</servlet-class>
-    </servlet>
-    <servlet-mapping> 
-        <servlet-name>Inscription</servlet-name>
-        <url-pattern>/inscription</url-pattern> 
-    </servlet-mapping> 
+    <!-- <servlet> -->
+    <!--     <servlet-name>Inscription</servlet-name> -->
+    <!--     <servlet-class>controleur.Inscription</servlet-class> -->
+    <!-- </servlet> -->
+    <!-- <servlet-mapping> --> 
+    <!--     <servlet-name>Inscription</servlet-name> -->
+    <!--     <url-pattern>/inscription</url-pattern> --> 
+    <!-- </servlet-mapping> --> 
 
     <!-- <servlet> -->
     <!--     <servlet-name>Home</servlet-name> -->
