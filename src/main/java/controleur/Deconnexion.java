@@ -18,7 +18,7 @@ public class Deconnexion extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       request.getSession().invalidate();
-      request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
+      request.getRequestDispatcher("jsp/index2.jsp").forward(request, response);
   }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
