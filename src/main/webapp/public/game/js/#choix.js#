@@ -1,0 +1,7 @@
+
+          $("#new").on('click',function(){
+             $(this).attr('href',$(this).attr('href')+'?a=creationRoom&room='+$("room-name").value());
+          });
+          $("#join").on('click',function(){
+             $(this).attr('href',$(this).attr('href')+'?a=rejoindre&room='+ $("room-name").value()); 
+          });

@@ -3,6 +3,7 @@
 <%@attribute name="username"  %>
 <%@attribute name="content" fragment="true" %>
 <%@attribute name="head_content" fragment="true" %>
+<%@attribute name="js_content" fragment="true" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,6 +13,7 @@
     <!-- Bootstrap -->
     <link href="/tama-game/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="/tama-game/public/css/style.css" rel="stylesheet">
+    <script src="/tama-game/public/js/jquery.js"></script>
     <jsp:invoke fragment="head_content"/>
 
     <title>${title}</title>
@@ -69,6 +71,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    
+    <jsp:invoke fragment="js_content"/>
     </body>
 </html>

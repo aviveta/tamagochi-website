@@ -1,3 +1,4 @@
+
 <%@page import="java.util.Collection"%>
 <%@page import="model.Joueur"%>
 <%@page import="model.FacadeJoueurs"%>
@@ -6,12 +7,14 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
 <t:layout>
-<jsp:attribute name="head_content">
-<script src="/tama-game/public/game/js/phaser.min.js"></script>
-        <script src="/tama-game/public/game/js/main.js"></script>
-<script src="/tama-game/public/game/js/websockets.js"></script>
-</jsp:attribute>
+    <jsp:attribute name="js_content">
+        <script src="/tama-game/public/game/js/input.js"></script>
+    </jsp:attribute>
+
+    
     <jsp:attribute name="content">
-        <div id="tama-game" ></div>
+        <a class="btn btn-alert" id="move" href="#">Avancer</a>
+        <a class="btn btn-alert" id="transparent" href="#">Transparent</a>
      </jsp:attribute>
+
 </t:layout>

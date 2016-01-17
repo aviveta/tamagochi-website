@@ -6,12 +6,13 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
 <t:layout>
-<jsp:attribute name="head_content">
-<script src="/tama-game/public/game/js/phaser.min.js"></script>
-        <script src="/tama-game/public/game/js/main.js"></script>
-<script src="/tama-game/public/game/js/websockets.js"></script>
-</jsp:attribute>
     <jsp:attribute name="content">
-        <div id="tama-game" ></div>
+        <input id="room-name"></input>
+        <a class="btn btn-alert" id="join" href="/tama-game/game">Rejoindre</a>
+        <a class="btn btn-alert" id="new" href="/tama-game/game">Creer</a>
+     </jsp:attribute>
+
+     <jsp:attribute name="js_content">
+         <script src="/tama-game/public/game/js/choix.js"></script>
      </jsp:attribute>
 </t:layout>

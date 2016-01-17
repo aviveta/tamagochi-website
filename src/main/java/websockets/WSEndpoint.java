@@ -18,63 +18,139 @@ import java.util.*;
 @ServerEndpoint("/example")
 @Stateless
 public class WSEndpoint {
-    public static HashMap<String,ArrayList<SessionJoueur>> rooms;
+    public static HashMap<String,ArrayList<Session>> rooms;
     public static ArrayList<String> joueurs;
     static {
-        rooms = new HashMap<String,ArrayList<SessionJoueur>>(); 
-
-
+        rooms = new HashMap<String,ArrayList<Session>>(); 
         joueurs = new ArrayList<String>();
-        
     }
     
     Logger log = Logger.getLogger(this.getClass());
     @Resource
     ManagedExecutorService mes;
-
     
     @OnMessage
-    public String receiveMessage(String message, Session session) {
+    public void receiveMessage(String message, Session session) {
+        // Map<String,List<String>> mapQuery = session.getRequestParameterMap();
+        // Map<String,String> mapQuery = getQueryMap(url.toString());
         log.info("Received : "+ message + ", session:" + session.getId());
-
-        if (message.equals("move")) {
-            //room contient -> ordinateur puis les joueurs
-            
-            //on envoie move avec l'id du joueur au bon afficheur client (ordinateur)
-
-            
+        String[] params = message.split(";");
+        String room = null;
+        String action = null;
+        if (params.length >= 2) {
+            room = params[1];
+            action = params[0];
         }
-
-        if (message.equals("transparent")) {
-            //on envoie transparent avec l'id du joueur au bon afficheur client (ordinateur)
-            
-        }
+        System.out.println(room);
+        System.out.println(action);
         
-    
-        return "kebab return";
+        if (action != null && room != null ) {
+            //creation room
+            if (action.equals("creationRoom")) {
+                log.info("Creation room" + room);
+                rooms.put(room,new ArrayList<Session>());
+                //ajout de l'ordinateur
+                rooms.get(room).add(0,session);
+            }
+            //rejoindre
+            if (action.equals("rejoindre")) {
+                log.info("rejoindre" + session.getId());
+                if (rooms.containsKey(room)) {
+                    log.info("le joueur rejoint la room " + session.getId());
+                    rooms.get(room).add(session);
+                    //on envoie une notification au jeu 
+                    try {
+                        rooms.get(room).get(0).getBasicRemote().sendText("newPlayer");
+                    } catch(Exception e) {e.printStackTrace();}
+                }
+            }
+            //ingame
+            if (action.equals("move") || action.equals("transparent")) {
+                //recherche du joueur qui a envoye l'input
+                Iterator<Session> it = rooms.get(room).iterator();
+                boolean trouve = false;
+                Session joueurCourant = null;
+                int index = 0;
+                while (!trouve && it.hasNext()) {
+                    joueurCourant = it.next();
+                    if (joueurCourant.getId().equals(session.getId())) {
+                        trouve = true;
+                    } else {
+                        index++;
+                    }
+                }
+                
+                if (trouve) {
+                    log.info("joueur :" + index);
+                    if (action.equals("move")) {
+                        //on envoie move avec l'id du joueur au bon afficheur client (ordinateur)
+                        try {
+                            rooms.get(room).get(0).getBasicRemote().sendText("move;"+index);
+                        } catch(Exception e) {e.printStackTrace();}
+                    }
+
+                    if (action.equals("transparent")) {
+                        //on envoie transparent avec l'id du joueur au bon afficheur client (ordinateur)
+                        try {
+                            rooms.get(room).get(0).getBasicRemote().sendText("transparent;"+index);
+                        } catch(Exception e) {e.printStackTrace();}
+                    }
+            
+                }
+            }
+        
+        }
+        // return message;
     }
   
     @OnOpen
     public void open(Session session) {
         //creation de la room si on est le premier
+        // URI url = session.getRequestURI();
+        // Map<String,List<String>> mapQuery = session.getRequestParameterMap();
 
-        //sinon on rejoint la room
-        log.info("Open session:" + session.getId());
-
-        joueurs.add("joueur"+session.getId());
-        String res = "";
-        for (String j : joueurs)
-            res += j + "\n";
-        try {
-        session.getBasicRemote().sendText(res);
-        } catch(Exception e) {e.printStackTrace();}
-       
+        // String[] params = message.split(";");
+        // String room = null;
+        // String action = null;
+        // if (params.length >= 2) {
+        //     room = params[1];
+        //     action = params[0];
+        // }
+        
+        // Map<String,String> mapQuery = getQueryMap(url.toString());
+        
+        //si creation -> creation room
+        // if (action.equals("creationRoom")) {
+        //     if (room != null) {
+        //         log.info("Creation room" + session.getId());
+        //         rooms.put(room,new ArrayList<Session>());
+        //         //ajout de l'ordinateur
+        //         rooms.get(room).add(0,session);
+        //     }
+        // }
+        // //sinon on ajoute le joueur dans la room
+        // if (action.equals("rejoindre")) {
+        //     if (room != null) {
+        //         if (rooms.containsKey(room)) {
+        //             log.info("le joueur rejoint la room " + session.getId());
+        //             rooms.get(room).add(session);
+                    
+        //             //on envoie une notification au jeu 
+        //             try {
+        //                 session.getBasicRemote().sendText("newPlayer");
+        //             } catch(Exception e) {e.printStackTrace();}
+                    
+        //         } else {
+        //             log.info("demande pas possible" + session.getId());
+        //         }
+                
+        //     }
+        // }
     }
   
+    
     @OnClose
     public void close(Session session, CloseReason c) {
-
-
         //on quitte la room
         
         //si on est le premier, on supprime toute la room

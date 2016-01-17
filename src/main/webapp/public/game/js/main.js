@@ -6,6 +6,7 @@ var TamaGame = function() {
     this.tamagochis = null; 
     this.players = null;
     this.roads = null;
+    this.ws = null;
     
     this.generatorTime = Phaser.Timer.SECOND*0.30;
 }
@@ -16,7 +17,6 @@ TamaGame.GAME_Y = 400;
 TamaGame.MAX_PLAYERS = 4;
 TamaGame.VELOCITY = 700;
 TamaGame.IMG_FOLDER = 'public/game/img/';
-
 
 TamaGame.Player = function(game,id,infos) {
     this.game = game;
@@ -47,6 +47,8 @@ TamaGame.Player = function(game,id,infos) {
     this.road.player = this;
     this.road.obstacles = [];
     
+    this.moveInput = false;
+    this.moveTransparency = false;
 
 
     game.add.existing(this);
@@ -67,6 +69,13 @@ TamaGame.Player.prototype.move = function() {
         this.moving = true;
 }
 
+// TamaGame.prototype.inputMove = function(indexPlayer) {
+//     this.players.children[indexPlayer-1].moveInput = true;
+// }
+// TamaGame.prototype.inputTransparency = function(indexPlayer) {
+//     this.players.children[indexPlayer-1].moveTransparency = true;
+// }
+
 TamaGame.prototype = {
     
     preload : function() {
@@ -84,6 +93,42 @@ TamaGame.prototype = {
 
     create : function() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
+        game.stage.disableVisibilityChange  = true;
+
+        //WS
+        this.ws = new WebSocket("ws://localhost:8080/tama-game/example");
+        var ws = this.ws;
+        this.ws.onopen = function()
+        {
+            var room = getParameterByName('room');
+            var action = getParameterByName('a');
+            console.log(action);
+            console.log(room);
+            ws.send(action+";"+room);
+        };
+
+        var _this = this;
+        this.ws.onmessage = function (evt) 
+        { 			     	
+            var msg = evt.data;
+            // alert("Message received:" +  msg);
+            //do action in the game
+            console.log(msg);
+            var msgs = msg.split(";");
+            if (msgs[0] == "move") {
+                _this.inputMove(parseInt(msgs[1]));
+            }
+
+            if (msgs[0] == "transparent") {
+                _this.inputTransparency(parseInt(msgs[1]));
+            }
+        };
+
+        this.ws.onclose = function()
+        { 
+            alert("Connection is closed..."); 
+        };
+        //WS ENDJk
 
         // game groups
         var roads = game.add.group();
@@ -116,6 +161,12 @@ TamaGame.prototype = {
         this.obstacleGenerator.timer.start(); 
     },
             
+    inputMove : function(indexPlayer) {
+    this.players.children[indexPlayer-1].moveInput = true;
+    },
+inputTransparency : function(indexPlayer) {
+    this.players.children[indexPlayer-1].moveTransparency = true;
+},
     generateObstacles : function() {
         var _this = this;
         //for each player, we check if we can make an obstacle
@@ -155,36 +206,55 @@ TamaGame.prototype = {
             p.overlap = true;
         });
 
+        
         /* INPUT HANDLERS */
-        if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-            this.players.children[0].isTransparent = true;
-            //timer pendant lequel le joueur est invulnerable?
-        }
-        
-        if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-            var player = this.players.children[0];
-            var a = player.body.touching.up;
-            
-            if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
-                player.move();
-                player.score.text = parseInt(player.score.text)+2;
+        this.players.forEach(function(p) {
+            if (p.transparencyInput) {
+                p.isTransparent = true;
+                p.transparencyInput = false;
             }
-        }
-        //player2
-        if (game.input.keyboard.isDown(Phaser.Keyboard.S)){
-            this.players.children[1].isTransparent = true;
-            //timer pendant lequel le joueur est invulnerable?
-        }
-        
-        if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
-            var player = this.players.children[1];
-            var a = player.body.touching.up;
+            if (p.moveInput) {
+                var a = p.body.touching.up;
+                
+                if ( !a && !p.overlap || (p.overlap && p.isTransparent) ) {
+                    p.move();
+                    p.score.text = parseInt(p.score.text)+2;
+                }
+                p.moveInput = false;
+            } 
             
-            if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
-                player.move();
-                player.score.text = parseInt(player.score.text)+2;
-            }
-        }
+        });
+
+        
+        // if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+        //     this.players.children[0].isTransparent = true;
+        //     //timer pendant lequel le joueur est invulnerable?
+        // }
+        
+        // if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
+        //     var player = this.players.children[0];
+        //     var a = player.body.touching.up;
+            
+        //     if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
+        //         player.move();
+        //         player.score.text = parseInt(player.score.text)+2;
+        //     }
+        // }
+        // //player2
+        // if (game.input.keyboard.isDown(Phaser.Keyboard.S)){
+        //     this.players.children[1].isTransparent = true;
+        //     //timer pendant lequel le joueur est invulnerable?
+        // }
+        
+        // if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
+        //     var player = this.players.children[1];
+        //     var a = player.body.touching.up;
+            
+        //     if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
+        //         player.move();
+        //         player.score.text = parseInt(player.score.text)+2;
+        //     }
+        // }
 
         /* END INPUT HANDLER */
 
@@ -219,3 +289,10 @@ TamaGame.prototype = {
 
 game.state.add('Game',TamaGame,true);
 
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
