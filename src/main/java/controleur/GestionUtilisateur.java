@@ -47,7 +47,7 @@ public class GestionUtilisateur extends HttpServlet {
       if (request.getParameter("a").equals("profil")) {
       	request.setAttribute("prenom", session.getAttribute("username"));
       	request.setAttribute("mail", session.getAttribute("mail"));
-          request.getRequestDispatcher("jsp/profil.jsp").forward(request, response);
+          request.getRequestDispatcher("jsp/profil1.jsp").forward(request, response);
 	    }
       }
 

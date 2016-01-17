@@ -17,12 +17,18 @@
             </div>
             <div class="col-md-3" id="bouton_inscription">
                 <h2 class="form-signin-heading">Pour s'inscrire</h2><br />
+		<form action="/tama-game/gestionInscription">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Cliquez ici</button>
+		<input type="hidden" name="a" value="inscrire" />
+		</form>
             </div>
             <img class="col-md-2" id="kiraitchi" src="img/vintage.png" />
             <div class="col-md-3" id="bouton_connection">
                 <h2 class="form-signin-heading">Pour se connecter</h2><br />
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Cliquez ici</button>
+		<form action="/tama-game/gestionInscription">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Cliquez ici</button>
+		<input type="hidden" name="a" value="connecter" />
+		</form>
             </div>
             <div class="col-md-2">
             </div>
