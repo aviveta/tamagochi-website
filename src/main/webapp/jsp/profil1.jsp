@@ -19,16 +19,16 @@
 	    <li class="list-group-item">Photo de profil
 	      <img src="#" alt="" />
 	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
-    	    <li class="list-group-item">Nom: ${username}
+    	    <li class="list-group-item">Nom : ${usersurname}
 	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
 	    </li>
-    	    <li class="list-group-item">Prénom: ${username}
+    	    <li class="list-group-item">Prénom : ${username}
 	    <button class="btn btn-default modifier badge" type="submit">Modifier</button>
 	    </li>
-    	    <li class="list-group-item">Adresse Email: ${mail}
+    	    <li class="list-group-item">Adresse Email : ${mail}
 	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
 	    </li>
-    	    <li class="list-group-item">Mot de passe: *********
+    	    <li class="list-group-item">Mot de passe : A faire
 	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
 	    </li>
   	  </ul>
