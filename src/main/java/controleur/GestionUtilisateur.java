@@ -43,14 +43,28 @@ public class GestionUtilisateur extends HttpServlet {
 		  Collection<Joueur> listesJoueurs = f.getJoueurs();
 		  request.setAttribute("joueurs",listesJoueurs);
 		  request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
+	    } else if (request.getParameter("a").equals("connection")) {
+	    	  String email = request.getParameter("email");
+		  String mdp = request.getParameter("mdp");
+		  Joueur j = f.getJoueur(email);
+		  if (mdp.equals(j.getMdp())) {
+		  	session.setAttribute("usersurname", j.getNom()) ;
+			session.setAttribute("username", j.getPrenom()) ;
+		  	session.setAttribute("mail", j.getEmail()) ;
+			request.getRequestDispatcher("jsp/index2.jsp").forward(request, response);
+		  } else {
+			request.getRequestDispatcher("jsp/alerte_connection.jsp").forward(request, response);
+		  }
+	    } else if (request.getParameter("a").equals("warning")) {
+		  request.getRequestDispatcher("jsp/page_connection.jsp").forward(request, response);
 	    }
 	    
-      if (request.getParameter("a").equals("profil")) {
+      /*if (request.getParameter("a").equals("profil")) {
       	request.setAttribute("prenom", session.getAttribute("username"));
       	request.setAttribute("mail", session.getAttribute("mail"));
           request.getRequestDispatcher("jsp/profil.jsp").forward(request, response);
           
-	    }
+	    }*/
 
         //modifierJoueur
         // Joueur j = (Joueur)session.getAttribute("user");
