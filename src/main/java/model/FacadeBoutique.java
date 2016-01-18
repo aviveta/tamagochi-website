@@ -13,11 +13,14 @@ public class FacadeBoutique{
   Boutique b = new Boutique();
 
   public FacadeBoutique() {
+  	//em.persist(this.b);
   }
  
   // Ajout objets dans la boutique
-  public void ajouterObjBoutique(int idObj) {
-    Obj o = (Obj) em.find(Obj.class, idObj);
+  public void ajouterObjBoutique(Obj o) {
+    //Obj o = (Obj) em.find(Obj.class, idObj);
+    //em.persist(o);
+    o.setBoutique(this.b);
     b.ajouterO(o);
   }
 
@@ -28,6 +31,7 @@ public class FacadeBoutique{
 
   public Collection<Obj> getObjets() {
     return b.getObjs();
+    //return em.createQuery("from Obj where b ="+this.b, Obj.class).getResultList();
   }
 
 }

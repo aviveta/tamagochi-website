@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 public class BoutiqueKebab extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	@EJB
+	FacadeBoutique f;
 
 	public BoutiqueKebab() {
 		super();
@@ -21,6 +23,8 @@ public class BoutiqueKebab extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("username",request.getSession(true).getAttribute("username"));
+		Collection<Obj> objets = f.getObjets();
+		request.setAttribute("listeObjs", objets);
 		request.getRequestDispatcher("jsp/boutique.jsp").forward(request, response);
 	}
 
