@@ -18,7 +18,7 @@ public class Profil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       //request.setAttribute("username",request.getSession(true).getAttribute("joueur")) ;
-      request.getRequestDispatcher("jsp/profil1.jsp").forward(request, response);
+      request.getRequestDispatcher("jsp/profil.jsp").forward(request, response);
   }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

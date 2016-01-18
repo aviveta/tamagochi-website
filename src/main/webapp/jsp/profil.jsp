@@ -8,22 +8,36 @@
                 <h1>Profil de ${username}</h1>
             </div>
 
+<div class="row" id="liste-infos">
+        <div class="panel panel-primary">
+  	  <div class="panel-heading">
+    	    <h3 class="panel-title">Informations personnelles</h3>
+  	  </div>
 
-  <div class="row" id="param-profil">
-  <ul class="liste">
-    <li class="list-group-item">
-      Prénom
-      <span class="badge" ><font size="4">${username}</font> </span>
-      <button class="btn btn-success" type="submit"><font size="4"><span  aria-hidden="true"></span></font>Modifier</button>
-     </li>
-    <li class="list-group-item">
-  <span class="badge" ><font size="4">${mail}</font> </span>
-      Email
-      <button class="btn btn-success" type="submit"><font size="4"><span  aria-hidden="true"> </span> </font> Modifier</button>
-    </li>
+	  <!-- List group -->
+	  <ul class="list-group">
+	    <li class="list-group-item">Photo de profil
+	      <img src="#" alt="" />
+	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+    	    <li class="list-group-item">Nom : ${usersurname}
+	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+	    </li>
+    	    <li class="list-group-item">Prénom : ${username}
+	    <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+	    </li>
+    	    <li class="list-group-item">Adresse Email : ${mail}
+	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+	    </li>
+    	    <li class="list-group-item">Mot de passe : A faire
+	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+	    </li>
+  	  </ul>
 
-  </ul> 
+	</div>
 </div>
+
+
+
         </jsp:attribute>
 
 </t:layout>
