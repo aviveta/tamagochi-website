@@ -48,8 +48,10 @@ public class FacadeJoueurs{
 		
   }
 
-  public Collection<Tamagochi> getTama() {
-		return em.createQuery("from Tamagochi", Tamagochi.class).getResultList();
+  public Collection<Tamagochi> getTamagochis(Joueur joueur) {
+      int id = joueur.id;
+      // select * from Tamagochi where proprietaire = 'id'
+      return em.createQuery("from Tamagochi", Tamagochi.class).getResultList();
 		
   }
 
@@ -86,7 +88,6 @@ public class FacadeJoueurs{
     // tama.put(t.getId(),t);
     j.associer(t);
     t.setProp(j);
-
   }
 
 
@@ -104,11 +105,6 @@ public class FacadeJoueurs{
     Joueur demande = (Joueur) em.find(Joueur.class,demandeID);
     Joueur demandeur = (Joueur) em.find(Joueur.class,demandeurID);
     //demande.demandeAmi(demandeur);
-
-    
-
-
-
   }
 
 //Ajouter un objet à un joueur
@@ -138,9 +134,6 @@ public class FacadeJoueurs{
     // o.setPrix(prix);
     // b.ajouterO(o);
     j.supprO(o);
-
-
-
   }
 
 

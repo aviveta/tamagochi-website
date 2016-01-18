@@ -39,6 +39,7 @@ public class GestionUtilisateur extends HttpServlet {
 		  session.setAttribute("username", prenom) ;
 		  session.setAttribute("mail", email) ;
 
+
 		  Collection<Joueur> listesJoueurs = f.getJoueurs();
 		  request.setAttribute("joueurs",listesJoueurs);
 		  request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
@@ -48,7 +49,14 @@ public class GestionUtilisateur extends HttpServlet {
       	request.setAttribute("prenom", session.getAttribute("username"));
       	request.setAttribute("mail", session.getAttribute("mail"));
           request.getRequestDispatcher("jsp/profil.jsp").forward(request, response);
+          
 	    }
+
+        //modifierJoueur
+        // Joueur j = (Joueur)session.getAttribute("user");
+        // j.password = "kebab"
+        //     f.set(j);
+      // dans set, on fait un persist
       }
 
       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

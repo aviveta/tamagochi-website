@@ -1,4 +1,4 @@
-var ws = new WebSocket("ws://localhost:8080/tama-game/example");
+var ws = new WebSocket("ws://192.168.43.64:8080/tama-game/example");
      ws.onopen = function()
      {
        var room = getParameterByName('room');

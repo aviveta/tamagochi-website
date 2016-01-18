@@ -48,7 +48,7 @@ TamaGame.Player = function(game,id,infos) {
     this.road.obstacles = [];
     
     this.moveInput = false;
-    this.moveTransparency = false;
+    this.transparencyInput = false;
 
 
     game.add.existing(this);
@@ -69,12 +69,16 @@ TamaGame.Player.prototype.move = function() {
         this.moving = true;
 }
 
-// TamaGame.prototype.inputMove = function(indexPlayer) {
-//     this.players.children[indexPlayer-1].moveInput = true;
-// }
-// TamaGame.prototype.inputTransparency = function(indexPlayer) {
-//     this.players.children[indexPlayer-1].moveTransparency = true;
-// }
+TamaGame.Player.prototype.setTransparency = function() {
+    if (!this.isTransparent) {
+        this.isTransparent = true;
+        console.log("A L'INTERIURRR");
+        this.game.time.events.add(Phaser.Timer.SECOND * 4, function(){
+            this.isTransparent = false;
+        } , this);
+    }
+}
+
 
 TamaGame.prototype = {
     
@@ -120,6 +124,7 @@ TamaGame.prototype = {
             }
 
             if (msgs[0] == "transparent") {
+                console.log("kebababbabababa transparency");
                 _this.inputTransparency(parseInt(msgs[1]));
             }
         };
@@ -165,7 +170,7 @@ TamaGame.prototype = {
     this.players.children[indexPlayer-1].moveInput = true;
     },
 inputTransparency : function(indexPlayer) {
-    this.players.children[indexPlayer-1].moveTransparency = true;
+    this.players.children[indexPlayer-1].transparencyInput = true;
 },
     generateObstacles : function() {
         var _this = this;
@@ -193,7 +198,7 @@ inputTransparency : function(indexPlayer) {
 
     update : function() {
         this.players.forEach(function(p) {
-            p.isTransparent = false;
+            // p.isTransparent = false;
             p.overlap = false;
             p.moving = false;
         });
@@ -210,7 +215,9 @@ inputTransparency : function(indexPlayer) {
         /* INPUT HANDLERS */
         this.players.forEach(function(p) {
             if (p.transparencyInput) {
-                p.isTransparent = true;
+                // p.isTransparent = true;
+                console.log("transparency input");
+                p.setTransparency();
                 p.transparencyInput = false;
             }
             if (p.moveInput) {
