@@ -31,7 +31,7 @@ public class FacadeBoutique{
 
   public Collection<Obj> getObjets() {
     return b.getObjs();
-    //return em.createQuery("from Obj where b ="+this.b, Obj.class).getResultList();
+    //return em.createQuery("from Obj where b = :boutique", Obj.class).setParameter("boutique", this.b).getResultList();
   }
 
 }

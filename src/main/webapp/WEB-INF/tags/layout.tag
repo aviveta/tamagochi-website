@@ -48,7 +48,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> ${username} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/tama-game/gestionTamagochis/">Gérer</a></li>
+                  <li><a href="/tama-game/tamagochis">Gérer mes tamagochis</a></li>
                   <li><a href="/tama-game/profil">Mon profil</a></li>
                   <li><a href="/tama-game/logout">Deconnexion</a></li>
                 </ul>

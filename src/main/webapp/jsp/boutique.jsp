@@ -1,4 +1,3 @@
-
 <%@page import="java.util.Collection"%>
 <%@page import="model.Joueur"%>
 <%@page import="model.FacadeJoueurs"%>
