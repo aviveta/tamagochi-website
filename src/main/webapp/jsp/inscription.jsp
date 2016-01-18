@@ -22,7 +22,7 @@
 		<input type="hidden" name="a" value="inscrire" />
 		</form>
             </div>
-            <img class="col-md-2" id="kiraitchi" src="img/vintage.png" />
+            <img class="col-md-2" id="kiraitchi" src="/tama-game/public/img/vintage.png" />
             <div class="col-md-3" id="bouton_connection">
                 <h2 class="form-signin-heading">Pour se connecter</h2><br />
 		<form action="/tama-game/gestionInscription">

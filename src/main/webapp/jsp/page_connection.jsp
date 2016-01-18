@@ -19,9 +19,9 @@
           <form class="form-signin" id="formulaire-login" method="POST" action="/tama-game/gestionUtilisateur">
             <h2 class="form-signin-heading">Se connecter</h2>
             <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" name="email">
             <label for="inputPassword" class="sr-only">Mot de passe</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
+            <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="" name="mdp">
             <div class="checkbox">
               <label>
                 <input type="checkbox" value="remember-me"> Se souvenir de moi
@@ -30,7 +30,7 @@
 	    <input type="hidden" name="a" value="connection"/>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Envoyer !</button>
           </form>
-          <img id="kiraitchi" src="img/kiraitchi.png"/>
+          <img id="kiraitchi" src="/tama-game/public/img/kiraitchi.png"/>
         </div>
 
         <div class="col-md-2">
