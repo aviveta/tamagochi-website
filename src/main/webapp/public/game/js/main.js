@@ -16,7 +16,9 @@ TamaGame.GAME_X = 800;
 TamaGame.GAME_Y = 400;
 TamaGame.MAX_PLAYERS = 4;
 TamaGame.VELOCITY = 700;
+TamaGame.TILE_OFFSET = 50;
 TamaGame.IMG_FOLDER = 'public/game/img/';
+
 
 TamaGame.Player = function(game,id,infos) {
     this.game = game;
@@ -39,6 +41,8 @@ TamaGame.Player = function(game,id,infos) {
     this.moving = false;
     this.isTransparent = false;
     this.overlap = false;
+
+    this.orientation = 0;
     
     /* road creation */
     
@@ -47,10 +51,12 @@ TamaGame.Player = function(game,id,infos) {
     this.road.player = this;
     this.road.obstacles = [];
     
+    /* inputs */
     this.moveInput = false;
     this.transparencyInput = false;
+    
 
-
+    alert(this.angle);
     game.add.existing(this);
 }
 
@@ -58,15 +64,30 @@ TamaGame.Player = function(game,id,infos) {
 TamaGame.Player.prototype = Object.create(Phaser.Sprite.prototype);
 TamaGame.Player.prototype.constructor = TamaGame.Player;
 
+
 TamaGame.Player.prototype.move = function() {
-        //do one step on the road
-        this.road.tilePosition.y += 5;
-        //set velocity aux obstacles, et si road move pas, on la met a 0
-        this.road.obstacles.forEach(function(item){
-            item.body.velocity.y = TamaGame.VELOCITY;
-        },this);
-    
-        this.moving = true;
+    switch(this.orientation) {
+        case 0:
+                this.angle = -2;
+                this.orientation = 1;
+                break;
+        case 1:
+                this.angle = 0;
+                this.orientation = 2;
+                break;
+        case 2:
+                this.angle = 2;
+                this.orientation = 0;
+                break;
+    }
+    //do one step on the road
+    this.road.tilePosition.y += TamaGame.TILE_OFFSET;
+    //set velocity aux obstacles, et si road move pas, on la met a 0
+    this.road.obstacles.forEach(function(item){
+        item.body.velocity.y = TamaGame.VELOCITY;
+    },this);
+
+    this.moving = true;
 }
 
 TamaGame.Player.prototype.setTransparency = function() {

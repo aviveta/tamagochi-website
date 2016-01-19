@@ -13,8 +13,13 @@
 
     
     <jsp:attribute name="content">
-        <a class="btn btn-alert" id="move" href="#">Avancer</a>
-        <a class="btn btn-alert" id="transparent" href="#">Transparent</a>
-     </jsp:attribute>
+    <div id="tr-group">
+        <a class="" id="button-transparent" href="#">Transparent</a>
+    </div>
+    <div id="buttons-group">
+        <a class="" id="button-a" href="#">A</a>
+        <a class="" id="button-b" href="#">B</a>
+    </div>
+    </jsp:attribute>
 
 </t:layout>

@@ -1,4 +1,5 @@
-var ws = new WebSocket("ws://192.168.43.64:8080/tama-game/example");
+var domain = window.location.host;
+var ws = new WebSocket("ws://"+domain+"/tama-game/example");
      ws.onopen = function()
      {
        var room = getParameterByName('room');
@@ -26,13 +27,33 @@ ws.onclose = function()
 jQuery(document).ready(function($){
 
     var room = getParameterByName('room');
+
+    var button_state = 'A';
+    var previous_state = 'A';
+
+    //a/b -> send message
     
-    $("#move").on('click',function(e){
+    $("#button-a").on('click',function(e){
         e.preventDefault();
-        ws.send("move;"+room);
+        previous_state = button_state;
+        button_state = 'A';
+        if (previous_state != button_state) {
+           ws.send("move;"+room);
+        }
     });
+
+   $("#button-b").on('click',function(e){
+      e.preventDefault();
+      previous_state = button_state;
+      button_state = 'B';
+      if (previous_state != button_state) {
+         ws.send("move;"+room);
+      }
+   });
+
+
     
-    $("#transparent").on('click',function(e){
+    $("#button-transparent").on('click',function(e){
         e.preventDefault();
         ws.send("transparent;"+room);
     });

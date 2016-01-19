@@ -140,3 +140,83 @@ footer {
 	display: block;
 	text-align: center;
 }
+
+
+/* inputs */
+
+#button-a, #button-b, #button-transparent {
+	text-decoration: none;
+	color: white;
+}
+
+#button-a {
+    background-color: red;
+    border-radius: 50%;
+    width: 45%;
+    height: 150px;
+    display: inline-block;
+    margin-right: 5%;
+    border: solid 7px #c0392b;
+
+}
+
+#button-b {
+    display: inline-block;
+    background-color: red;
+    border-radius: 50%;
+    width: 45%;
+    height: 150px;
+    border: solid 7px #c0392b;
+
+}
+
+#button-transparent {
+	display: block;
+    background-color: #3498db;
+    border-radius: 5px;
+    height: 150px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    border: solid 7px #2980b9;
+}
+
+#button-a:active {
+    background-color: #f1c40f;
+    border-color: #f39c12;
+}
+
+#button-b:active {
+    background-color: #f1c40f;
+    border-color: #f39c12
+}
+
+#button-transparent:active {
+	background-color: #2980b9;
+}
+
+#tr-group, #buttons-group {
+	text-align: center;
+    display: block;
+    font-size: 30px;
+    
+    /* -ms-transform: rotate(90deg); /1* IE 9 *1/ */
+    /* -webkit-transform: rotate(90deg); /1* Chrome, Safari, Opera *1/ */
+    /* transform: rotate(90deg); */
+}
+
+#tr-group {
+}
+
+#buttons-group {
+    width: 100%;
+}
+
+
+/*@media all and (orientation:landscape) {
+	
+}*/
+
+
