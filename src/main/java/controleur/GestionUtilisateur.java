@@ -53,6 +53,9 @@ public class GestionUtilisateur extends HttpServlet {
 		  	session.setAttribute("mail", j.getEmail()) ;
 			request.getRequestDispatcher("jsp/index2.jsp").forward(request, response);
 		  } else {
+		  	session.setAttribute("erreur", "Erreur de saisie de l'email ou du mot de passe.");
+			session.setAttribute("alert-type", "alert-warning");
+			//request.getRequestDispatcher("jsp/page_connection.jsp").forward(request, response);
 			request.getRequestDispatcher("jsp/alerte_connection.jsp").forward(request, response);
 		  }
 	    } else if (request.getParameter("a").equals("warning")) {
