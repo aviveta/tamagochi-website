@@ -52,6 +52,10 @@ public class FacadeJoueurs{
   	return em.createQuery("from Joueur where email = :mail", Joueur.class).setParameter("mail",mail).getSingleResult();
   }
 
+  public void updateJoueur(Joueur j){
+  	em.persist(j);
+  }
+
   public Collection<Tamagochi> getTamagochis(Joueur joueur) {
       int id = joueur.id;
       // select * from Tamagochi where proprietaire = 'id'

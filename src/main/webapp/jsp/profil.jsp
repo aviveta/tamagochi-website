@@ -20,16 +20,32 @@
 	      <img src="#" alt="" />
 	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
     	    <li class="list-group-item">Nom : ${usersurname}
-	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+            <form id="modification-formulaire" method="POST" action="/tama-game/profil">
+            <input type="text" class="form-control" id="InputName1" placeholder="Nouveau Nom" required="" autofocus="" name ="new_nom">
+            <input type = "hidden" name = "a" value = "modif-nom1"/>
+	      <button type="submit" id="modif-nom1" class="btn btn-default modifier badge" type="submit">Modifier</button>
+        </form>
 	    </li>
     	    <li class="list-group-item">Prénom : ${username}
-	    <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+            <form id="modification-formulaire" method="POST" action="/tama-game/profil">
+            <input type="text" class="form-control" id="InputName2" placeholder="Nouveau Prénom" required="" autofocus="" name ="new_prenom">
+            <input type = "hidden" name = "a" value = "modif-nom2"/>
+          <button type="submit" id="modif-nom2" class="btn btn-default modifier badge" type="submit">Modifier</button>
+        </form>
 	    </li>
     	    <li class="list-group-item">Adresse Email : ${mail}
-	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+            <form id="modification-formulaire" method="POST" action="/tama-game/profil">
+            <input type="email" class="form-control" id="InputMail" placeholder="Nouvel Email" required="" autofocus="" name ="new_mail">
+            <input type = "hidden" name = "a" value = "modif-mail"/>
+          <button type="submit" id="modif-mail" class="btn btn-default modifier badge" type="submit">Modifier</button>
+        </form>
 	    </li>
     	    <li class="list-group-item">Mot de passe : A faire
-	      <button class="btn btn-default modifier badge" type="submit">Modifier</button>
+            <form id="modification-formulaire" method="POST" action="/tama-game/profil">
+            <input type="password" class="form-control" id="InputMdp" placeholder="Nouveau mot de passe" required="" autofocus="" name ="new_nom">
+            <input type = "hidden" name = "a" value = "modif-mdp"/>
+          <button type="submit" id="modif-mdp" class="btn btn-default modifier badge" type="submit">Modifier</button>
+        </form>
 	    </li>
   	  </ul>
 
