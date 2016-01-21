@@ -128,6 +128,7 @@ public class Joueur {
   }
 
   public void setNom(String nNom){
+    
     this.nom =nNom;
   }
 
