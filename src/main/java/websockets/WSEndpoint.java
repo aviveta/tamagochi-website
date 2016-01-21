@@ -12,10 +12,13 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.EndpointConfig;
+
 import org.jboss.logging.Logger;
 
 import java.util.*;
-@ServerEndpoint("/example")
+@ServerEndpoint(value = "/example", configurator = GetHttpSessionConfigurator.class)
 @Stateless
 public class WSEndpoint {
     public static HashMap<String,ArrayList<Session>> rooms;
@@ -29,6 +32,9 @@ public class WSEndpoint {
     @Resource
     ManagedExecutorService mes;
     
+    // private HttpSession sessionHttp;
+    // private Session wsSession;
+    
     @OnMessage
     public void receiveMessage(String message, Session session) {
         // Map<String,List<String>> mapQuery = session.getRequestParameterMap();
@@ -37,9 +43,15 @@ public class WSEndpoint {
         String[] params = message.split(";");
         String room = null;
         String action = null;
-        if (params.length >= 2) {
+        String user = null;
+        if (params.length == 2) {
             room = params[1];
             action = params[0];
+        }
+        if (params.length == 3) {
+            room = params[1];
+            action = params[0];
+            user = params[2];
         }
         System.out.println(room);
         System.out.println(action);
@@ -104,7 +116,13 @@ public class WSEndpoint {
     }
   
     @OnOpen
-    public void open(Session session) {
+    public void open(Session session, EndpointConfig config) {
+
+        // this.wsSession = session;
+        // this.httpSession = (HttpSession) config.getUserProperties()
+        //                                    .get(HttpSession.class.getName());
+        // System.out.println("KEKEKEKEKEK" + httpSession.getAttribute("username"));
+
         //creation de la room si on est le premier
         // URI url = session.getRequestURI();
         // Map<String,List<String>> mapQuery = session.getRequestParameterMap();

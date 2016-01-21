@@ -94,27 +94,27 @@ public class FacadeJoueurs{
   }
 
   //Changer les attributs d'un Joueur: 
-  public void JsetNom(Joueur j,String nNom) {
-    try{
-UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
-transaction.begin();
- j.setNom(nNom);
-transaction.commit();
-} catch (NamingException e){
+  // public void JsetNom(Joueur j,String nNom) {
+  //   try{
+// UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+// transaction.begin();
+ // j.setNom(nNom);
+// transaction.commit();
+// } catch (NamingException e){
 
-}
- catch (NotSupportedException ex){
+// }
+ // catch (NotSupportedException ex){
 
- }
-  catch (RollbackException exp){
+ // }
+  // catch (RollbackException exp){
 
-    }
- catch (SystemException exc){
+  //   }
+ // catch (SystemException exc){
 
- }
+ // }
   
 
-}
+// }
 
 //Ajouter un Tamagoshi à un joueur
   public void ajoutTama(String nom, int sexe, int idJoueur){
@@ -174,7 +174,11 @@ transaction.commit();
 
 
 
-
+public void update(Joueur joueur) {
+  System.out.println("MODIFICATION JOUEUR KEBBA");
+  em.merge(joueur);
+  // em.persist(joueur);
+}
 
 
 

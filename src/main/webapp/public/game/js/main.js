@@ -55,8 +55,6 @@ TamaGame.Player = function(game,id,infos) {
     this.moveInput = false;
     this.transparencyInput = false;
     
-
-    alert(this.angle);
     game.add.existing(this);
 }
 
@@ -93,7 +91,6 @@ TamaGame.Player.prototype.move = function() {
 TamaGame.Player.prototype.setTransparency = function() {
     if (!this.isTransparent) {
         this.isTransparent = true;
-        console.log("A L'INTERIURRR");
         this.game.time.events.add(Phaser.Timer.SECOND * 4, function(){
             this.isTransparent = false;
         } , this);
@@ -218,10 +215,24 @@ inputTransparency : function(indexPlayer) {
     },
 
     update : function() {
+        var _this = this;
         this.players.forEach(function(p) {
-            // p.isTransparent = false;
             p.overlap = false;
             p.moving = false;
+
+            if (!p.isTransparent) {
+                //draw transparent effect
+
+                // Draw circle of light
+                _this.shadowTexture.context.beginPath();
+                _this.shadowTexture.context.fillStyle = 'rgb(255, 255, 255)';
+                _this.shadowTexture.context.arc(p.x, p.y,
+                                               this.LIGHT_RADIUS, 0, Math.PI*2);
+                _this.shadowTexture.context.fill();
+                _this.shadowTexture.dirty = true;
+            }
+
+            
         });
         
         this.obstacles.forEach(function(item){
