@@ -22,6 +22,9 @@ public class GestionUtilisateur extends HttpServlet {
       @EJB
       FacadeJoueurs f;
 
+      public static final int COOKIE_MAX_AGE = 60*60*24*365;
+      public static final String CHAMP_MEMOIRE = "remember-me";
+
       public GestionUtilisateur() {
 	    super();
       }
@@ -43,24 +46,39 @@ public class GestionUtilisateur extends HttpServlet {
 		  Collection<Joueur> listesJoueurs = f.getJoueurs();
 		  request.setAttribute("joueurs",listesJoueurs);
 		  request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
+
 	    } else if (request.getParameter("a").equals("connection")) {
 	    	  String email = request.getParameter("email");
 		  String mdp = request.getParameter("mdp");
-		  Joueur j = f.getJoueur(email);
-		  if (mdp.equals(j.getMdp())) {
-		  	session.setAttribute("usersurname", j.getNom()) ;
-			session.setAttribute("username", j.getPrenom()) ;
-		  	session.setAttribute("mail", j.getEmail()) ;
-			request.getRequestDispatcher("jsp/index2.jsp").forward(request, response);
-		  } else {
-		  	session.setAttribute("erreur", "Erreur de saisie de l'email ou du mot de passe.");
+		  if (f.hasEmail(email)) {
+		  	Joueur j = f.getJoueur(email);
+		  	if ( mdp.equals(j.getMdp()) ) {
+		  		session.setAttribute("usersurname", j.getNom()) ;
+				session.setAttribute("username", j.getPrenom()) ;
+		  		session.setAttribute("mail", j.getEmail()) ;
+				if (request.getParameter("memoire") != null) {
+					setCookie( response, "souvenirEmail", email, COOKIE_MAX_AGE);
+					setCookie( response, "souvenirMdp", mdp, COOKIE_MAX_AGE);
+				} else {
+					setCookie( response, "souvenirEmail", "", 0);
+					setCookie( response, "souvenirMdp", "", 0);
+				}
+				//request.setAttribute("mail", email);
+				//request.setAttribute("mdp", mdp);
+				request.getRequestDispatcher("jsp/index2.jsp").forward(request, response);
+		  	} else {
+		  		session.setAttribute("erreur", "Erreur de saisie de l'email ou du mot de passe.");
+				session.setAttribute("alert-type", "alert-warning");
+				request.getRequestDispatcher("jsp/page_connection.jsp").forward(request, response);
+			}
+		} else {
+			session.setAttribute("erreur", "Erreur de saisie de l'email ou du mot de passe.");
 			session.setAttribute("alert-type", "alert-warning");
-			//request.getRequestDispatcher("jsp/page_connection.jsp").forward(request, response);
-			request.getRequestDispatcher("jsp/alerte_connection.jsp").forward(request, response);
-		  }
-	    } else if (request.getParameter("a").equals("warning")) {
+			request.getRequestDispatcher("jsp/page_connection.jsp").forward(request, response);
+		}
+      	    } /*else if (request.getParameter("a").equals("warning")) {
 		  request.getRequestDispatcher("jsp/page_connection.jsp").forward(request, response);
-	    }
+	    }*/
 	    
       /*if (request.getParameter("a").equals("profil")) {
       	request.setAttribute("prenom", session.getAttribute("username"));
@@ -88,4 +106,14 @@ public class GestionUtilisateur extends HttpServlet {
 	    doGet(request,response);
       }
 
+
+       /*
+	* Méthode utilitaire gérant la création d'un cookie et son ajout à la
+	* réponse HTTP.
+	*/
+	private static void setCookie( HttpServletResponse response, String nom, String valeur, int maxAge ) {
+		Cookie cookie = new Cookie( nom, valeur );
+		cookie.setMaxAge( maxAge );
+		response.addCookie( cookie );
+	}
 }

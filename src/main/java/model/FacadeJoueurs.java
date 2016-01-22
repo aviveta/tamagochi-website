@@ -50,7 +50,7 @@ public class FacadeJoueurs{
 	// }
 
   public Collection<Joueur> getJoueurs() {
-		return em.createQuery("from Joueur", Joueur.class).getResultList();
+	return em.createQuery("from Joueur", Joueur.class).getResultList();
 		
   }
 
@@ -58,7 +58,17 @@ public class FacadeJoueurs{
   	return em.createQuery("from Joueur where email = :mail", Joueur.class).setParameter("mail",mail).getSingleResult();
   }
 
- 
+  public boolean hasEmail(String mail) {
+  	boolean b = false;
+	try {
+  		Joueur j = em.createQuery("from Joueur where email = :mail", Joueur.class).setParameter("mail",mail).getSingleResult();
+		if (j != null) {
+			b = true;
+		}
+	} catch (NoResultException e) {
+	}
+	return b;
+  }
 
   public Collection<Tamagochi> getTamagochis(Joueur joueur) {
       int id = joueur.id;
@@ -68,7 +78,7 @@ public class FacadeJoueurs{
   }
 
   public Collection<Obj> getObjets() {
-		return em.createQuery("from Obj", Obj.class).getResultList();
+	return em.createQuery("from Obj", Obj.class).getResultList();
 		
   }
 
