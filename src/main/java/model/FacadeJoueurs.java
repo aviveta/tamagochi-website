@@ -1,14 +1,20 @@
 package model;
 import java.util.*;
 
-import javax.ejb.Singleton;
+import javax.ejb.*;
 import javax.persistence.*;
+import javax.annotation.Resource;
+import javax.transaction.*;
+import javax.naming.*;
+
 
 @Singleton
 public class FacadeJoueurs{
 
   @PersistenceContext
   EntityManager em;
+
+ 
   // int idJoueur=0;
   // int idTama=0;
   // int idObj= 0;
@@ -52,9 +58,7 @@ public class FacadeJoueurs{
   	return em.createQuery("from Joueur where email = :mail", Joueur.class).setParameter("mail",mail).getSingleResult();
   }
 
-  public void updateJoueur(Joueur j){
-  	em.persist(j);
-  }
+ 
 
   public Collection<Tamagochi> getTamagochis(Joueur joueur) {
       int id = joueur.id;
@@ -88,6 +92,30 @@ public class FacadeJoueurs{
     // joueurs.put(j.getId(),j);
 
   }
+
+  //Changer les attributs d'un Joueur: 
+  // public void JsetNom(Joueur j,String nNom) {
+  //   try{
+// UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+// transaction.begin();
+ // j.setNom(nNom);
+// transaction.commit();
+// } catch (NamingException e){
+
+// }
+ // catch (NotSupportedException ex){
+
+ // }
+  // catch (RollbackException exp){
+
+  //   }
+ // catch (SystemException exc){
+
+ // }
+  
+
+// }
+
 //Ajouter un Tamagoshi à un joueur
   public void ajoutTama(String nom, int sexe, int idJoueur){
     Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
@@ -146,7 +174,11 @@ public class FacadeJoueurs{
 
 
 
-
+public void update(Joueur joueur) {
+  System.out.println("MODIFICATION JOUEUR KEBBA");
+  em.merge(joueur);
+  // em.persist(joueur);
+}
 
 
 
