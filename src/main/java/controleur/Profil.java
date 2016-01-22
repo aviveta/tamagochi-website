@@ -36,7 +36,7 @@ public class Profil extends HttpServlet {
 	  Joueur j=f.getJoueur(session.getAttribute("mail").toString());
 	  if (request.getParameter("a").equals("modif-nom1")) {
 	    String nNom = request.getParameter("new_nom");
-	    // f.JsetNom(j,nNom);
+	    j.setNom(nNom);
 	    f.update(j);     
 	    session.setAttribute("usersurname",nNom);
 	  }      else    if (request.getParameter("a").equals("modif-nom2")) {
