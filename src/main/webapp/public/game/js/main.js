@@ -1,6 +1,6 @@
 /******************* TAMAGAME ********************/
 
-var game = new Phaser.Game(900,400,Phaser.AUTO,'tama-game');
+var game = new Phaser.Game(900,400,Phaser.CANVAS,'tama-game');
 
 var TamaGame = function() {
     this.tamagochis = null; 
@@ -41,8 +41,10 @@ TamaGame.Player = function(game,id,infos) {
     this.moving = false;
     this.isTransparent = false;
     this.overlap = false;
-
+    this.collide = false;
     this.orientation = 0;
+
+
     
     /* road creation */
     
@@ -105,58 +107,73 @@ TamaGame.prototype = {
             game.load.image('road'+(i+1),TamaGame.IMG_FOLDER+'road'+(i+1)+'.png');
         }
         game.load.image('obstacle',TamaGame.IMG_FOLDER+'himouto.jpg');
-        game.load.image('p1',TamaGame.IMG_FOLDER+'lovelin.png');
-        game.load.image('p2',TamaGame.IMG_FOLDER+'lovelin.png');
-        game.load.image('p3',TamaGame.IMG_FOLDER+'lovelin.png');
-        game.load.image('p4',TamaGame.IMG_FOLDER+'lovelin.png');
+        game.load.image('p1',TamaGame.IMG_FOLDER+'p1.png');
+        game.load.image('p2',TamaGame.IMG_FOLDER+'p2.png');
+        game.load.image('p3',TamaGame.IMG_FOLDER'p3.png');
+        game.load.image('p4',TamaGame.IMG_FOLDER+'p4.png');
     },
 
 
 
     create : function() {
+        var _this = this;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.disableVisibilityChange  = true;
 
         //WS
-        this.ws = new WebSocket("ws://localhost:8080/tama-game/example");
+        var domain = window.location.host;
+        this.ws = new WebSocket("ws://"+domain+"/tama-game/example");
+        // this.ws = new WebSocket("ws://localhost:8080/tama-game/example");
         var ws = this.ws;
+        // this.room = "";
+        // var room = this.room;
         this.ws.onopen = function()
         {
             var room = getParameterByName('room');
             var action = getParameterByName('a');
-            console.log(action);
-            console.log(room);
             ws.send(action+";"+room);
         };
 
-        var _this = this;
         this.ws.onmessage = function (evt) 
         { 			     	
             var msg = evt.data;
             // alert("Message received:" +  msg);
             //do action in the game
-            console.log(msg);
             var msgs = msg.split(";");
             if (msgs[0] == "move") {
                 _this.inputMove(parseInt(msgs[1]));
             }
 
             if (msgs[0] == "transparent") {
-                console.log("kebababbabababa transparency");
                 _this.inputTransparency(parseInt(msgs[1]));
             }
+
+            //si c'est une nouvelle connexion,
+            //on recoit aussi info du tamagochi
+            //on peut supposer avoir deja toutes les imgs du jeu dans public
+            //et on charge la bonne
+            //sprite . loadTexture
+            
+            //et le nom du joueur
+            
+            
+            //il faut pouvoir a la fin du jeu, faire une requete http pour dire de save le score
+
+
+            //ou avant de lancer le jeu, on attend tout le monde
         };
 
         this.ws.onclose = function()
         { 
             alert("Connection is closed..."); 
         };
-        //WS ENDJk
+        //WS END
 
         // game groups
         var roads = game.add.group();
         this.obstacles = game.add.group();
         this.players = game.add.group();
+        this.hitboxes = game.add.group();
         
         /* 
          *   P1  P2  P3  P4
@@ -176,8 +193,18 @@ TamaGame.prototype = {
             roads.add(p.road); 
             var style = { font: "42px Arial", fill: "#ff0044" };
             var middleRoad = (TamaGame.GAME_X/TamaGame.MAX_PLAYERS)/2;
-            p.score = game.add.text(p.x + middleRoad, 50, "0", style);
-        });
+            p.score = game.add.text(p.x + middleRoad, 30, "0", style);
+
+            //creation de la hitbox
+            p.hitbox = game.add.sprite(p.x + offset, TamaGame.GAME_Y/2, null);
+            game.physics.enable(p.hitbox,Phaser.Physics.ARCADE);
+            p.hitbox.enableBody = true;
+            p.hitbox.body.immovable = true;
+            p.hitbox.body.setSize(200,20);
+            p.hitbox.player = p;
+            this.hitboxes.add(p.hitbox);
+            
+        },this);
         
         //creation des obstacles pour chaque road
         this.obstacleGenerator = game.time.events.loop(this.generatorTime,this.generateObstacles,this);
@@ -219,82 +246,62 @@ inputTransparency : function(indexPlayer) {
         this.players.forEach(function(p) {
             p.overlap = false;
             p.moving = false;
+            p.collide = false;
 
             if (!p.isTransparent) {
                 //draw transparent effect
-
-                // Draw circle of light
-                _this.shadowTexture.context.beginPath();
-                _this.shadowTexture.context.fillStyle = 'rgb(255, 255, 255)';
-                _this.shadowTexture.context.arc(p.x, p.y,
-                                               this.LIGHT_RADIUS, 0, Math.PI*2);
-                _this.shadowTexture.context.fill();
-                _this.shadowTexture.dirty = true;
             }
-
-            
         });
         
         this.obstacles.forEach(function(item){
             item.body.velocity.y = 0;
         },this);
 
-        game.physics.arcade.overlap(this.players,this.obstacles,function(p,o){
-            p.overlap = true;
+        // game.physics.arcade.overlap(this.players,this.obstacles,function(p,o){
+        //     p.overlap = true;
+        //     p.obstacleCollide = o;
+        // });
+
+        // game.physics.arcade.collide(this.players,this.obstacles,function(p,o){
+        //     p.obstacleCollide = o; 
+        //     p.collide = true;
+        // });
+
+        //collide hitbox
+            
+            // game.physics.arcade.collide(p.hitbox, this.obstacles,function(pl,o){
+            //     pl.obstacleCollide = o;
+            //     pl.collide = true;
+            // });
+            
+        game.physics.arcade.overlap(this.hitboxes, this.obstacles,function(h,o){
+            h.player.obstacleCollide = o;
+            h.player.overlap = true;
         });
+        
 
         
         /* INPUT HANDLERS */
         this.players.forEach(function(p) {
             if (p.transparencyInput) {
-                // p.isTransparent = true;
-                console.log("transparency input");
-                p.setTransparency();
+                //destruction de l'objet
+                if (p.collide || p.overlap) {
+                    var index = p.obstacleCollide.player.road.obstacles.indexOf(p.obstacleCollide);
+                    p.obstacleCollide.player.road.obstacles.splice(index,1);
+                    p.obstacleCollide.destroy();
+                }
+                // p.setTransparency();
                 p.transparencyInput = false;
             }
             if (p.moveInput) {
                 var a = p.body.touching.up;
-                
                 if ( !a && !p.overlap || (p.overlap && p.isTransparent) ) {
                     p.move();
                     p.score.text = parseInt(p.score.text)+2;
                 }
                 p.moveInput = false;
             } 
-            
         });
-
-        
-        // if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-        //     this.players.children[0].isTransparent = true;
-        //     //timer pendant lequel le joueur est invulnerable?
-        // }
-        
-        // if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-        //     var player = this.players.children[0];
-        //     var a = player.body.touching.up;
-            
-        //     if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
-        //         player.move();
-        //         player.score.text = parseInt(player.score.text)+2;
-        //     }
-        // }
-        // //player2
-        // if (game.input.keyboard.isDown(Phaser.Keyboard.S)){
-        //     this.players.children[1].isTransparent = true;
-        //     //timer pendant lequel le joueur est invulnerable?
-        // }
-        
-        // if (game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
-        //     var player = this.players.children[1];
-        //     var a = player.body.touching.up;
-            
-        //     if ( !a && !player.overlap || (player.overlap && player.isTransparent) ) {
-        //         player.move();
-        //         player.score.text = parseInt(player.score.text)+2;
-        //     }
-        // }
-
         /* END INPUT HANDLER */
 
         //destruction des objets en dehors de la zone
@@ -321,7 +328,8 @@ inputTransparency : function(indexPlayer) {
     },
     
     render : function() {
-         game.debug.body(this.players);
+        game.debug.body(this.players);
+        game.debug.body(this.hitboxes);
     }
 };
 

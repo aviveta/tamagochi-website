@@ -14,7 +14,7 @@
     
     <jsp:attribute name="content">
     <div id="tr-group">
-        <a class="" id="button-transparent" href="#">Transparent</a>
+        <a class="" id="button-transparent" href="#">Detruire!</a>
     </div>
     <div id="buttons-group">
         <a class="" id="button-a" href="#">A</a>
