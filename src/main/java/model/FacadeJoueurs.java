@@ -50,8 +50,7 @@ public class FacadeJoueurs{
 	// }
 
   public Collection<Joueur> getJoueurs() {
-	return em.createQuery("from Joueur", Joueur.class).getResultList();
-		
+	return em.createQuery("from Joueur", Joueur.class).getResultList();	
   }
 
   public Joueur getJoueur(String mail) {

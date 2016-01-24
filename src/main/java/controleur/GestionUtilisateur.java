@@ -43,9 +43,9 @@ public class GestionUtilisateur extends HttpServlet {
 		  session.setAttribute("mail", email) ;
 
 
-		  Collection<Joueur> listesJoueurs = f.getJoueurs();
-		  request.setAttribute("joueurs",listesJoueurs);
-		  request.getRequestDispatcher("jsp/users.jsp").forward(request, response);
+		  //Collection<Joueur> listesJoueurs = f.getJoueurs();
+		  //request.setAttribute("joueurs",listesJoueurs);
+		  request.getRequestDispatcher("jsp/choixTama.jsp").forward(request, response);
 
 	    } else if (request.getParameter("a").equals("connection")) {
 	    	  String email = request.getParameter("email");

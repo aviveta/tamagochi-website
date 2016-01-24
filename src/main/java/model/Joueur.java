@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 public class Joueur {
-  @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
+  @OneToMany(mappedBy="prop")
   Collection<Tamagochi> tamas=new ArrayList<Tamagochi>();
 
   @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
@@ -24,8 +24,6 @@ public class Joueur {
   Collection<Message> mess_rec=new ArrayList<Message>();
 
 
-
-
   @GeneratedValue(strategy=GenerationType.AUTO)
   @Id
   int id;
@@ -34,6 +32,9 @@ public class Joueur {
   String prenom;
   String email;
   String mdp;
+
+  @OneToOne(mappedBy="prop")
+  Tamagochi tama_courant; //
 
 
     public Joueur() {}
@@ -47,6 +48,14 @@ public class Joueur {
     
 
   }
+
+  /*public Joueur (String nom,String prenom, String email, String mdp, Tamagochi t){
+    this.nom=nom;
+    this.prenom=prenom;
+    this.email=email;
+    this.mdp=mdp;
+    this.tama_courant = t;
+  }//*/
 
   //gestion des tamagotshis
 
@@ -106,6 +115,14 @@ public class Joueur {
   }
 
   //Getter et setter
+
+  public Tamagochi getTamaCourant() {
+    return this.tama_courant;
+  }//
+
+  public void setTamaCourant(Tamagochi t) {
+    this.tama_courant = t;
+  }//
   
   public int getId(){
     return this.id;

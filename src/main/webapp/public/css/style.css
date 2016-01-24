@@ -171,7 +171,7 @@ footer {
 }
 
 #button-transparent {
-	display: block;
+    display: block;
     background-color: #3498db;
     border-radius: 5px;
     height: 150px;
@@ -219,4 +219,11 @@ footer {
 	
 }*/
 
+/* gestion image */
+.img-gestion {
+	display: inline-block;
+}
 
+h3 {
+	text-align: center;
+}

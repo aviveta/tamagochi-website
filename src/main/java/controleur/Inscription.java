@@ -31,7 +31,7 @@ public class Inscription extends HttpServlet {
 					request.setAttribute("souvenirMdp", souvenirMdp);
 			}
 			request.getRequestDispatcher("jsp/page_connection.jsp").forward(request, response);
-		}
+		} 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
