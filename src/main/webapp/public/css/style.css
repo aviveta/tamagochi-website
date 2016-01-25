@@ -227,3 +227,10 @@ footer {
 h3 {
 	text-align: center;
 }
+
+.btn-gestion {
+	display: block;
+	text-align: center;
+	margin: auto;
+	width:40%;
+}

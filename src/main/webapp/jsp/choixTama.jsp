@@ -4,6 +4,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
 <t:layout>
+
+<jsp:attribute name="head_content">
+<script src="/tama-game/public/js/choix_tama.js"></script>
+</jsp:attribute>
   <jsp:attribute name="content">
 
 <div class="jumbotron">
@@ -13,70 +17,70 @@
 <div class="row">
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/ange.png" />
+      <img src="/tama-game/public/img/gestion/ange.png" name="ange" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/blonde.png" name="nomTama" value="blonde" />
+      <img src="/tama-game/public/img/gestion/blonde.png" name="blonde" />
 
       </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/kiraichi.png" name="nomTama" value="kiraichi" />
+      <img src="/tama-game/public/img/gestion/kiraichi.png" name="kiraichi" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/lovelin.png" name="nomTama" value="lovelin" />
+      <img src="/tama-game/public/img/gestion/lovelin.png" name="lovelin" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/nadeshiko.png" name="nomTama" value="nadeshiko" />
+      <img src="/tama-game/public/img/gestion/nadeshiko.png" name="nadeshiko" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/neko.png" name="nomTama" value="neko" />
+      <img src="/tama-game/public/img/gestion/neko.png" name="neko" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/panda.png" name="nomTama" value="panda" />
+      <img src="/tama-game/public/img/gestion/panda.png" name="panda" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/tamago.png" name="nomTama" value="tamago" />
+      <img src="/tama-game/public/img/gestion/tamago.png" name="tamago" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/umaru.png" name="nomTama" value="umaru" />
+      <img src="/tama-game/public/img/gestion/umaru.png" name="umaru" />
       
     </a>
   </div>
 
   <div class="col-xs-6 col-md-3">
     <a href="/tama-game/gestionTamagochis?a=choisirTamaInit" class="thumbnail">
-      <img src="/tama-game/public/img/gestion/vintage.png" name="nomTama" value="vintage" />
+      <img src="/tama-game/public/img/gestion/vintage.png" name="vintage" />
       
     </a>
   </div>

@@ -10,7 +10,8 @@ public class Tamagochi {
 
   @OneToMany(mappedBy="tama",fetch=FetchType.EAGER)
   Collection<Obj> objs=new ArrayList<Obj>();
-  @ManyToOne
+
+  @OneToOne
   Joueur prop;
 
   @Id
