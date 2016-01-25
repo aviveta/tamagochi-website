@@ -58,12 +58,12 @@ public class FacadeTamagochis{
   	em.remove(t);
   }*/
 
-  public void setTamaCourant(Joueur j, String nom) {
+  /*public void setTamaCourant(Joueur j, String nom) {
   	Tamagochi t= new Tamagochi(nom,0,0);
 	em.persist(t);
   	j.setTamaCourant(t);
 	t.setProp(j);
-  }
+  }*/
 
   public Tamagochi getTamaCourant(Joueur j) {
   	return j.getTamaCourant();
