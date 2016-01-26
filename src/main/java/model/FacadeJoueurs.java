@@ -131,7 +131,7 @@ public class FacadeJoueurs{
     Tamagochi t= new Tamagochi(nom,sexe,0);
     em.persist(t);
     // tama.put(t.getId(),t);
-    j.associer(t);
+    //j.associer(t);
     t.setProp(j);
   }
 
@@ -167,7 +167,7 @@ public class FacadeJoueurs{
   public void supprTama(int idTama){
     Tamagochi t = (Tamagochi) em.find(Tamagochi.class,idTama);
     Joueur j = t.getProp();
-    j.supprT(t);
+    //j.supprT(t);
     em.remove(t);
 
 

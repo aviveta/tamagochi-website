@@ -44,8 +44,33 @@ public class GestionTamagochis extends HttpServlet {
 		request.setAttribute("tamaCourant", t);
 		//request.setAttribute("tamagochis", listeTama);
 		request.getRequestDispatcher("jsp/listeTamagochis.jsp").forward(request, response);
-	    } else if (request.getParameter("a").equals("choisirTamaCourant")) {
+	    } /*else if (request.getParameter("a").equals("choisirTamaCourant")) {
+	    }*/else if (request.getParameter("a").equals("nettoyer")) {
+	    	int idTama = Integer.parseInt(request.getParameter("name"));
+		Tamagochi t = f.getTama(idTama);
+		t.nettoyer();
+		t.toCsv();
+		//request.setAttribute("tamaCourant", t);
+	    } else if (request.getParameter("a").equals("nourrir")) {
+	    	int idTama = Integer.parseInt(request.getParameter("name"));
+		Tamagochi t = f.getTama(idTama);
+		t.nourrir();
+		t.toCsv();
+		//request.setAttribute("tamaCourant", t);
+	    } else if (request.getParameter("a").equals("distraire")) {
+	    	int idTama = Integer.parseInt(request.getParameter("name"));
+		Tamagochi t = f.getTama(idTama);
+		t.distraire();
+		t.toCsv();
+		//request.setAttribute("tamaCourant", t);
+	    } else if (request.getParameter("a").equals("sport")) {
+	    	int idTama = Integer.parseInt(request.getParameter("name"));
+		Tamagochi t = f.getTama(idTama);
+		t.sport();
+		t.toCsv();
+		//request.setAttribute("tamaCourant", t);
 	    }
+
       }
 
       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

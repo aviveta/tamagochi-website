@@ -20,11 +20,23 @@ public class Tamagochi {
   String nom;
   int sexe;
   int age;
+  boolean courant;
+
+  int poids;
+  int proprete;
+  int joie;
+
+  public Tamagochi(){
+  }
 
   public Tamagochi(String n, int s, int a){
     this.nom = n;
     this.sexe=s;
     this.age=a;
+    this.courant = false;
+    this.poids = 20;
+    this.proprete = 20;
+    this.joie = 20;
   }
 
   //Associer un objet à notre tamagotshi
@@ -41,6 +53,38 @@ public class Tamagochi {
 
  //getter et setter
  //
+ public boolean getCourant(){
+   return this.courant;
+ }
+
+ public int getPoids(){
+   return this.poids;
+ }
+ 
+ public int getProprete(){
+   return this.proprete;
+ }
+ 
+ public int getJoie(){
+   return this.joie;
+ }
+
+ public void setCourant(boolean t){
+   this.courant = t;
+ }
+
+ public void setPoids(int p){
+   this.poids = p;
+ }
+ 
+ public void getProprete(int p){
+   this.proprete = p;
+ }
+ 
+ public void getJoie(int j){
+   this.joie = j;
+ }
+
  public Joueur getProp(){
    return this.prop;
  }
@@ -89,7 +133,29 @@ public class Tamagochi {
    this.age=nAge;
  }
 
+ // gestion des tamagochis
+  public void nettoyer() {
+  	this.proprete += 10;
+  } 
 
+  public void nourrir() {
+  	this.proprete -= 5;
+	this.joie += 10;
+	this.poids += 5;
+  }
+
+  public void distraire() {
+  	this.joie += 10;
+  }
+
+  public void sport() {
+  	this.poids -= 5;
+	this.proprete -= 5;
+  }
+
+  public String toCsv() {
+  	return id+";"+poids+";"+proprete+";"+joie;
+  }
  
 
 }

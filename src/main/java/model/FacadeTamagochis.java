@@ -65,6 +65,10 @@ public class FacadeTamagochis{
 	t.setProp(j);
   }*/
 
+  public Tamagochi getTama(int id) {
+  	return em.createQuery("from Tamagochi where id = :idTama", Tamagochi.class).setParameter("idTama", id).getSingleResult();
+  }
+
   public Tamagochi getTamaCourant(Joueur j) {
   	return j.getTamaCourant();
   }
