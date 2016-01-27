@@ -22,7 +22,13 @@ public class TamagochisKebab extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("usersurname",request.getSession(true).getAttribute("usersurname")) ;
 		request.setAttribute("username",request.getSession(true).getAttribute("username"));
+		request.setAttribute("mail",request.getSession(true).getAttribute("mail")) ;
+		String mail = (String)request.getSession(true).getAttribute("mail");
+		Joueur j = f.getJoueur(mail);
+		Tamagochi t = f.getTamaCourant(j);
+		request.setAttribute("tamaCourant", t);
 		request.getRequestDispatcher("jsp/listeTamagochis.jsp").forward(request, response);
 	}
 
