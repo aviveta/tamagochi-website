@@ -5,10 +5,6 @@
 
 <t:layout>
 
-<jsp:attribute name="head_content">
-<script src="/tama-game/public/js/gerer_tama.js"></script>
-</jsp:attribute>
-
   <jsp:attribute name="content">
 
 <div class="jumbotron">

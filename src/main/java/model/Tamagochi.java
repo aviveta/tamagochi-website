@@ -20,7 +20,7 @@ public class Tamagochi {
   String nom;
   int sexe;
   int age;
-  boolean courant;
+  public boolean courant;
 
   int poids;
   int proprete;
