@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.19)  27 JAN 2016 10:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.19)  27 JAN 2016 12:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -689,31 +689,49 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 35.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-<Schemabdd.png, id=15, 559.08875pt x 471.7625pt>
+<Schemabdd.png, id=19, 559.08875pt x 471.7625pt>
 File: Schemabdd.png Graphic file (type png)
  <use Schemabdd.png>
 Package pdftex.def Info: Schemabdd.png used on input line 40.
 (pdftex.def)             Requested size: 279.54369pt x 235.88066pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 45.
+
+Overfull \hbox (37.03406pt too wide) in paragraph at lines 50--52
+[]\T1/cmr/m/n/10.95 Des serv-lets ont été im-plé-men-tées, afin de gé-rer les u
+ti-li-sa-teurs. Ainsi, la serv-let \T1/cmtt/m/n/10.95 GestionUtilisateurs.java
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--52
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 57.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.45 \end{document}
-                    [1 <./Schemabdd.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 45.
+l.57 \end{document}
+                    [1 <./Schemabdd.png>] [2]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 57.
  (./rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 45.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 45.
-Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: F3E166951EE81DBF4588ACB56E4ECD89;63.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 45.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 57.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 57.
+
+
+Package rerunfilecheck Warning: File `rapport.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `rapport.out':
+(rerunfilecheck)             Before: 6E6D0D007DF54199355414BCAE4CABFD;133
+(rerunfilecheck)             After:  D204C5804B8251DB1B22B2D70A83F595;194.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 57.
  ) 
 Here is how much of TeX's memory you used:
- 9991 strings out of 493315
- 145908 string characters out of 6137904
- 238322 words of memory out of 5000000
- 13310 multiletter control sequences out of 15000+600000
+ 9995 strings out of 493315
+ 145949 string characters out of 6137904
+ 240322 words of memory out of 5000000
+ 13311 multiletter control sequences out of 15000+600000
  12743 words of font info for 39 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,7n,38p,354b,398s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -723,10 +741,10 @@ usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></us
 r/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/
 local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/lo
 cal/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on rapport.pdf (2 pages, 150022 bytes).
+Output written on rapport.pdf (3 pages, 156530 bytes).
 PDF statistics:
- 47 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
- 5 named destinations out of 1000 (max. 500000)
- 14 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 58 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
+ 8 named destinations out of 1000 (max. 500000)
+ 22 words of extra memory for PDF output out of 10000 (max. 10000000)
 
