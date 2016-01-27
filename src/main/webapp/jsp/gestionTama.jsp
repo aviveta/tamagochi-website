@@ -4,6 +4,11 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 
 <t:layout>
+
+<jsp:attribute name="head_content">
+<script src="/tama-game/public/js/gestion_tama.js"></script>
+</jsp:attribute>
+
   <jsp:attribute name="content">
 
  <!-- page-container contient tout le contenu relatif a la page courante -->
@@ -13,15 +18,15 @@
       </div>
 
       <div id="gauche" class="btn-group-vertical" role="group" aria-label="...">
-        <div>
-  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Nettoyer</button>
+        <form method="post" action="/tama-game/gestionTamagochis">
+  	  <button type="button" class="btn btn-lg btn-default bouton-gerer">Nettoyer</button>
 	  <input type="hidden" name="a" value="nettoyer" />
-	</div>
+	</form>
 
-	<div>
-  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Nourrir</button>
+	<form method="post" action="/tama-game/gestionTamagochis">
+  	  <button type="button" class="btn btn-lg btn-default bouton-gerer">Nourrir</button>
 	  <input type="hidden" name="a" value="nourrir" />
-	</div>
+	</form>
 
       </div>
 
@@ -30,15 +35,15 @@
       </div>
 
       <div id="droite" class="btn-group" role="group" aria-label="...">
-	<div>
-  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Distraire</button>
+	<form method="post" action="/tama-game/gestionTamagochis">
+  	  <button type="button" class="btn btn-lg btn-default bouton-gerer">Distraire</button>
 	  <input type="hidden" name="a" value="distraire" />
-	</div>
+	</form>
 
-	<div>
-  	  <button type="button" class="bouton-gerer" class="btn btn-lg btn-default">Faire du sport</button>
+	<form method="post" action="/tama-game/gestionTamagochis">
+  	  <button type="button" class="btn btn-lg btn-default bouton-gerer">Faire du sport</button>
 	  <input type="hidden" name="a" value="sport" />
-	</div>
+	</form>
       </div>
 
     </div>

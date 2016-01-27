@@ -77,4 +77,10 @@ public class FacadeTamagochis{
   	return em.createQuery("from Joueur where email = :mail", Joueur.class).setParameter("mail",mail).getSingleResult();
   }
 
+  public void update(Tamagochi t) {
+  //System.out.println("MODIFICATION JOUEUR KEBBA");
+  em.merge(t);
+  // em.persist(joueur);
+  }
+
 }
