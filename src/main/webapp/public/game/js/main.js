@@ -107,10 +107,10 @@ TamaGame.prototype = {
             game.load.image('road'+(i+1),TamaGame.IMG_FOLDER+'road'+(i+1)+'.png');
         }
         game.load.image('obstacle',TamaGame.IMG_FOLDER+'himouto.jpg');
-        game.load.image('p1',TamaGame.IMG_FOLDER+'p1.png');
-        game.load.image('p2',TamaGame.IMG_FOLDER+'p2.png');
-        game.load.image('p3',TamaGame.IMG_FOLDER'p3.png');
-        game.load.image('p4',TamaGame.IMG_FOLDER+'p4.png');
+        game.load.image('p1',TamaGame.IMG_FOLDER+'lovelin.png');
+        game.load.image('p2',TamaGame.IMG_FOLDER+'lovelin.png');
+        game.load.image('p3',TamaGame.IMG_FOLDER+'lovelin.png');
+        game.load.image('p4',TamaGame.IMG_FOLDER+'lovelin.png');
     },
 
 

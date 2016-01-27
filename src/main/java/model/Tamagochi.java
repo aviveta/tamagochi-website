@@ -136,11 +136,12 @@ public class Tamagochi {
  // gestion des tamagochis
   public void nettoyer() {
   	this.proprete += 10;
+	this.joie -= 2;
   } 
 
   public void nourrir() {
   	this.proprete -= 5;
-	this.joie += 10;
+	this.joie += 5;
 	this.poids += 5;
   }
 
@@ -149,8 +150,9 @@ public class Tamagochi {
   }
 
   public void sport() {
-  	this.poids -= 5;
+  	this.poids -= 10;
 	this.proprete -= 5;
+	this.joie -= 5;
   }
 
   public String toCsv() {

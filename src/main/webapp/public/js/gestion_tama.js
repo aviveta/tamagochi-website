@@ -14,7 +14,7 @@ jQuery(document).ready(function($){
 			$.ajax({
 				url: url
 			}).done(function(data){
-				alert(data);
+				//alert(data);
 				//traitement des data
 				var tab = data.split(";");
 				//on recupere les infos pour chaque case du tableau
