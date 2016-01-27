@@ -27,53 +27,85 @@ public class GestionTamagochis extends HttpServlet {
 	    request.setAttribute("usersurname",request.getSession(true).getAttribute("usersurname")) ;
 	    request.setAttribute("username",request.getSession(true).getAttribute("username")) ;
 	    request.setAttribute("mail",request.getSession(true).getAttribute("mail")) ;
+
 	    if (request.getParameter("a").equals("gererTama")) {
 	        String mail = (String)request.getSession(true).getAttribute("mail");
 		Joueur j = f.getJoueur(mail);
-		Tamagochi t = f.getTamaCourant(j);
+		int idTama = Integer.parseInt(request.getParameter("id"));
+		Tamagochi t = f.getTama(idTama);
 		request.setAttribute("tamaCourant", t);
 	    	request.getRequestDispatcher("jsp/gestionTama.jsp").forward(request, response);
+
 	    } else if (request.getParameter("a").equals("choisirTamaInit")) {
 	        String mail = (String)request.getSession(true).getAttribute("mail");
 	    	String nomTama = request.getParameter("name");
 		Joueur j = f.getJoueur(mail);
-		f.ajoutTama(nomTama, j);
-		Tamagochi t = f.getTamaCourant(j);
-		//f.setTamaCourant(j, t);
-		//Collection<Tamagochi> listeTama = f.getTamagochis(j);
+		Tamagochi t = f.ajoutTama(nomTama, j);
+		f.setTamaCourant(j, t);
+		f.update(t);
+		f.update(j);
+		Collection<Tamagochi> listeTama = f.getTamagochis(j);
 		request.setAttribute("tamaCourant", t);
-		//request.setAttribute("tamagochis", listeTama);
+		request.setAttribute("tamagochis", listeTama);
 		request.getRequestDispatcher("jsp/listeTamagochis.jsp").forward(request, response);
-	    } /*else if (request.getParameter("a").equals("choisirTamaCourant")) {
-	    }*/else if (request.getParameter("a").equals("nettoyer")) {
+
+	    } else if (request.getParameter("a").equals("choisirTamaCourant")) {
+	    	String mail = (String)request.getSession(true).getAttribute("mail");
+		Joueur j = f.getJoueur(mail);
+		int idTama = Integer.parseInt(request.getParameter("id"));
+		Tamagochi t = f.getTama(idTama);
+		Tamagochi t1 = f.getTamaCourant(j);
+		f.setTamaCourant(j, t);
+		f.update(t);
+		f.update(t1);
+		f.update(j);
+		Collection<Tamagochi> listeTama = f.getTamagochis(j);
+		//f.update(listeTama);
+		request.setAttribute("tamaCourant", t);
+		request.setAttribute("tamagochis", listeTama);
+		request.getRequestDispatcher("jsp/listeTamagochis.jsp").forward(request, response);
+
+	    } else if (request.getParameter("a").equals("nettoyer")) {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.nettoyer();
 		f.update(t);
 		response.getWriter().println(t.toCsv());
-		//request.setAttribute("tamaCourant", t);
+
 	    } else if (request.getParameter("a").equals("nourrir")) {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.nourrir();
 		f.update(t);
 		response.getWriter().println(t.toCsv());
-		//request.setAttribute("tamaCourant", t);
+
 	    } else if (request.getParameter("a").equals("distraire")) {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.distraire();
 		f.update(t);
 		response.getWriter().println(t.toCsv());
-		//request.setAttribute("tamaCourant", t);
+
 	    } else if (request.getParameter("a").equals("sport")) {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.sport();
 		f.update(t);
 		response.getWriter().println(t.toCsv());
-		//System.out.println("KEBABKEBABKEBAB");
-		//request.setAttribute("tamaCourant", t);
+
+	    } else if (request.getParameter("a").equals("newTama")) {
+	    	request.getRequestDispatcher("jsp/choixTama1.jsp").forward(request, response);
+
+	    } else if (request.getParameter("a").equals("ajoutTama")) {
+		String mail = (String)request.getSession(true).getAttribute("mail");
+	    	String nomTama = request.getParameter("name");
+		Joueur j = f.getJoueur(mail);
+		Tamagochi t1 = f.ajoutTama(nomTama, j);
+		Tamagochi t = f.getTamaCourant(j);
+		Collection<Tamagochi> listeTama = f.getTamagochis(j);
+		request.setAttribute("tamaCourant", t);
+		request.setAttribute("tamagochis", listeTama);
+		request.getRequestDispatcher("jsp/listeTamagochis.jsp").forward(request, response);
 	    }
 
       }

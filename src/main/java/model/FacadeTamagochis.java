@@ -14,63 +14,66 @@ public class FacadeTamagochis{
   }
 
   // Recuperer les tamagochis hors tamagochi courant
-  //public Collection<Tamagochi> getTamagochis(Joueur joueur) {
-  	//List listeTama = em.createQuery("from Tamagochi where prop = :joueur", Tamagochi.class).setParameter("joueur", joueur).getResultList();
-	//int index = listeTama.indexOf(getTamaCourant(joueur));
-	//return (Collection) listeTama.remove(index);
-	//return em.createQuery("from Tamagochi where prop = :joueur", Tamagochi.class).setParameter("joueur", joueur).getResultList();
-  //}
-
-  // Recuperer le tamagochi par son nom
-  //public Tamagochi getTamagochi(Joueur j, String nom) {
-  	/*Query query = em.createQuery("from Tamagochi where prop = :joueur and nom = :nomTama", Tamagochi.class);
-	query.setParameter("nomTama", nom);
-	query.setParameter("joueur", j);
-	return (Tamagochi)query.getSingleResult();*/
-  	//return em.createQuery("from Tamagochi where nom = :nomTama", Tamagochi.class).setParameter("nomTama", nom).getSingleResult();
-	//return em.createQuery("from Tamagochi where prop = :joueur and nom = :nomTama", Tamagochi.class).setParameter("joueur", j).setParameter("nomTama", nom).getSingleResult();
-  //}
+  public Collection<Tamagochi> getTamagochis(Joueur joueur) {
+  	return em.createQuery("from Tamagochi where prop = :joueur and courant= :bool").setParameter("joueur", joueur).setParameter("bool", false).getResultList();
+  }//
 
   //Ajouter un Tamagoshi à un joueur
-  /*public void ajoutTama(String nom, Joueur j) {
+  public Tamagochi ajoutTama(String nom, Joueur j) {
     //Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
     Tamagochi t= new Tamagochi(nom,0,0);
     em.persist(t);
     // tama.put(t.getId(),t);
     j.associer(t);
     t.setProp(j);
-  }*/
+    return t;
+  }
 
-  public void ajoutTama(String nom, Joueur j) {
+  /*public void ajoutTama(String nom, Joueur j) {
     //Joueur j = (Joueur) em.find(Joueur.class,idJoueur);
     Tamagochi t= new Tamagochi(nom,0,0);
     em.persist(t);
     // tama.put(t.getId(),t);
     j.setTamaCourant(t);
     t.setProp(j);
-  }
+  }*/
 
   //Supprimer un Tamagoshi à un joueur
-  /*public void supprTama(int idTama){
+  public void supprTama(int idTama){
   	Tamagochi t = (Tamagochi) em.find(Tamagochi.class,idTama);
   	Joueur j = t.getProp();
   	j.supprT(t);
   	em.remove(t);
-  }*/
+  }//
 
-  /*public void setTamaCourant(Joueur j, String nom) {
-  	Tamagochi t= new Tamagochi(nom,0,0);
-	em.persist(t);
-  	j.setTamaCourant(t);
-	t.setProp(j);
-  }*/
+  public void setTamaCourant(Joueur j, Tamagochi t) {
+     try {
+	t.setCourant(true);
+	Tamagochi t1 = getTamaCourant(j);
+	t1.setCourant(false);
+	/*Tamagochi t1 = j.getTamaCourant();
+	j.setTamaCourant(t);
+	update(t1);
+	update(t);*/
+     } catch (NoResultException e) {
+     }
+  }
 
   public Tamagochi getTama(int id) {
   	return em.createQuery("from Tamagochi where id = :idTama", Tamagochi.class).setParameter("idTama", id).getSingleResult();
   }
 
   public Tamagochi getTamaCourant(Joueur j) {
-  	return j.getTamaCourant();
+	/*ArrayList<Tamagochi> l = new ArrayList<Tamagochi>();
+	l = (ArrayList) getTamagochis(j);
+	int i=0;
+	int taille = l.size();
+	while(!(l.get(i).getCourant()) && i<taille) {
+		i++;
+	}
+	return l.get(i);*/
+  	//return j.getTamaCourant();
+	return em.createQuery("from Tamagochi where prop_id = :idJ and courant = :bool", Tamagochi.class).setParameter("idJ", j.getId()).setParameter("bool", true).getSingleResult();
   }
 
   public Joueur getJoueur(String mail) {
@@ -82,5 +85,18 @@ public class FacadeTamagochis{
   em.merge(t);
   // em.persist(joueur);
   }
+
+  public void update(Joueur j) {
+  //System.out.println("MODIFICATION JOUEUR KEBBA");
+  em.merge(j);
+  // em.persist(joueur);
+  }
+
+  /*public void update(Collection<Tamagochi> lt) {
+  	for (Tamagochi t : lt) {
+  		em.merge(t);
+	}
+  }*/
+
 
 }

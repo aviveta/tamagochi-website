@@ -28,7 +28,9 @@ public class TamagochisKebab extends HttpServlet {
 		String mail = (String)request.getSession(true).getAttribute("mail");
 		Joueur j = f.getJoueur(mail);
 		Tamagochi t = f.getTamaCourant(j);
+		Collection<Tamagochi> listeTama = f.getTamagochis(j);
 		request.setAttribute("tamaCourant", t);
+		request.setAttribute("tamagochis", listeTama);
 		request.getRequestDispatcher("jsp/listeTamagochis.jsp").forward(request, response);
 	}
 

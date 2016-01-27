@@ -5,8 +5,8 @@ import javax.persistence.*;
 
 @Entity
 public class Joueur {
-  //@OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
-  //Collection<Tamagochi> tamas=new ArrayList<Tamagochi>();
+  @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)//
+  Collection<Tamagochi> tamas=new ArrayList<Tamagochi>();//
 
   @OneToMany(mappedBy="prop",fetch=FetchType.EAGER)
   Collection<Obj> objs=new ArrayList<Obj>();
@@ -33,8 +33,8 @@ public class Joueur {
   String email;
   String mdp;
 
-  @OneToOne(mappedBy="prop",fetch=FetchType.EAGER)
-  Tamagochi tama_courant; //
+  //@OneToOne(mappedBy="prop",fetch=FetchType.EAGER)
+  //Tamagochi tama_courant; //
 
 
     public Joueur() {}
@@ -59,13 +59,13 @@ public class Joueur {
 
   //gestion des tamagotshis
 
-  /*public void associer(Tamagochi t){
+  public void associer(Tamagochi t){
     this.tamas.add(t);
   }
 
   public void supprT(Tamagochi t){
     this.tamas.remove(t);
-  }*/
+  }
 
   //gestion des amis
   public void demandeAmi(Joueur demandeur){
@@ -116,13 +116,24 @@ public class Joueur {
 
   //Getter et setter
 
-  public Tamagochi getTamaCourant() {
-    return this.tama_courant;
+  /*public Tamagochi getTamaCourant() {
+	ArrayList<Tamagochi> l = new ArrayList<Tamagochi>();
+	l = (ArrayList) getTamas();
+	int i=0;
+	int taille = l.size();
+	while(!(l.get(i).getCourant()) && i<taille) {
+		i++;
+	}
+	return l.get(i);
+
+    //return this.tama_courant;
   }//
 
   public void setTamaCourant(Tamagochi t) {
-    this.tama_courant = t;
-  }//
+    t.setCourant(true);
+    getTamaCourant().setCourant(false);
+    //this.tama_courant = t;
+  }//*/
   
   public int getId(){
     return this.id;
@@ -173,13 +184,13 @@ public class Joueur {
     this.email =nEmail;
   }
 
-  /*public Collection<Tamagochi> getTamas(){
+  public Collection<Tamagochi> getTamas(){
     return this.tamas;
   }
 
   public void setTamas(Collection<Tamagochi> nTamas){
     this.tamas = nTamas;
-  }*/
+  }
 
   public Collection<Obj> getObj(){
     return this.objs;

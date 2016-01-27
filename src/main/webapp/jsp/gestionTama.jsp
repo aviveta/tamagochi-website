@@ -14,7 +14,7 @@
  <!-- page-container contient tout le contenu relatif a la page courante -->
     <div id="page-container">
       <div class="jumbotron">
-        <h1>Gérer votre tamagochi !</h1>
+        <h1>Gérez votre tamagochi !</h1>
       </div>
 
       <div id="gauche" class="btn-group-vertical" role="group" aria-label="...">
