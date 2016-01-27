@@ -49,25 +49,25 @@ public class GestionTamagochis extends HttpServlet {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.nettoyer();
-		t.toCsv();
+		response.getWriter().println(t.toCsv());
 		//request.setAttribute("tamaCourant", t);
 	    } else if (request.getParameter("a").equals("nourrir")) {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.nourrir();
-		t.toCsv();
+		response.getWriter().println(t.toCsv());
 		//request.setAttribute("tamaCourant", t);
 	    } else if (request.getParameter("a").equals("distraire")) {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.distraire();
-		t.toCsv();
+		response.getWriter().println(t.toCsv());
 		//request.setAttribute("tamaCourant", t);
 	    } else if (request.getParameter("a").equals("sport")) {
 	    	int idTama = Integer.parseInt(request.getParameter("name"));
 		Tamagochi t = f.getTama(idTama);
 		t.sport();
-		t.toCsv();
+		response.getWriter().println(t.toCsv());
 		//request.setAttribute("tamaCourant", t);
 	    }
 
