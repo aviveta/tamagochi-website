@@ -4,9 +4,10 @@ var ws = new WebSocket("ws://"+domain+"/tama-game/example");
      {
        var room = getParameterByName('room');
        var action = getParameterByName('a');
+         var usermail = getParameterByName('user_email');
        console.log(action);
        console.log(room);
-       ws.send(action+";"+room);
+       ws.send(action+";"+room+";"+usermail);
    };
 ws.onmessage = function (evt) 
 { 			     	

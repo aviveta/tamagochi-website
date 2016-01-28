@@ -25,7 +25,7 @@ TamaGame.Player = function(game,id,infos) {
     this.game = game;
     var offset = 30;
     var posX = (TamaGame.GAME_X/TamaGame.MAX_PLAYERS)*(id-1);
-    Phaser.Sprite.call(this, game, posX + 50 , TamaGame.GAME_Y/2 + 100 , infos.img);
+    Phaser.Sprite.call(this, game, posX , TamaGame.GAME_Y/2 , infos.img);
 
     /* player information */
     this.id = id; 
@@ -102,19 +102,22 @@ TamaGame.prototype = {
             game.load.image('road'+(i+1),TamaGame.IMG_FOLDER+'road'+(i+1)+'.jpg');
         }
         game.load.image('obstacle',TamaGame.IMG_FOLDER+'himouto.jpg');
-        // game.load.image('p1',TamaGame.IMG_FOLDER+'p1.png');
-        // game.load.image('p2',TamaGame.IMG_FOLDER+'p2.png');
-        // game.load.image('p3',TamaGame.IMG_FOLDER+'p3.png');
-        // game.load.image('p4',TamaGame.IMG_FOLDER+'p4.png');
-        game.load.image('blonde',TamaGame.IMG_FOLDER+'blonde.png');
-        game.load.image('lovelin',TamaGame.IMG_FOLDER+'lovelin.png');
-        game.load.image('himouto',TamaGame.IMG_FOLDER+'himouto.png');
-        game.load.image('kiraichi',TamaGame.IMG_FOLDER+'kiraichi.png');
-        game.load.image('ange',TamaGame.IMG_FOLDER+'ange.png');
-        game.load.image('neko',TamaGame.IMG_FOLDER+'neko.png');
-        game.load.image('tamago',TamaGame.IMG_FOLDER+'tamago.png');
-        game.load.image('umaru',TamaGame.IMG_FOLDER+'umaru.png');
-        game.load.image('vintage',TamaGame.IMG_FOLDER+'vintage.png');
+
+        'panda'
+        'nadeshiko'
+        'blonde'
+        'lovelin'
+        'neko'
+        'ange'
+        'himouto'
+        'kiraichi'
+        'tamago'
+        'umaru'
+        'vintage'
+        game.load.image('p1',TamaGame.IMG_FOLDER+'p1.png');
+        game.load.image('p2',TamaGame.IMG_FOLDER+'p2.png');
+        game.load.image('p3',TamaGame.IMG_FOLDER+'p3.png');
+        game.load.image('p4',TamaGame.IMG_FOLDER+'p4.png');
     },
 
 
@@ -139,6 +142,7 @@ TamaGame.prototype = {
 
         this.ws.onmessage = function (evt) 
         { 			     	
+            alert(evt.data);
             var msg = evt.data;
             // alert("Message received:" +  msg);
             //do action in the game
@@ -154,8 +158,18 @@ TamaGame.prototype = {
 
             if (msgs[0] == "newPlayer") {
                 
-                //creer un joueur
-                _this.createPlayer(parseInt(msgs[1]),msgs[3],msgs[2]);
+                //creer un joueur ?
+                alert(msgs);
+                createPlayer(parseInt(msgs[1]),msgs[2],msgs[3]);
+                //si c'est une nouvelle connexion,
+                //on recoit aussi info du tamagochi
+                //on peut supposer avoir deja toutes les imgs du jeu dans public
+                //et on charge la bonne
+                //sprite . loadTexture
+                
+                //et le nom du joueur
+                //il faut pouvoir a la fin du jeu, faire une requete http pour dire de save le score
+                //ou avant de lancer le jeu, on attend tout le monde
             }
             
         };
@@ -171,7 +185,6 @@ TamaGame.prototype = {
         this.obstacles = game.add.group();
         this.players = game.add.group();
         this.hitboxes = game.add.group();
-        
         
         /* 
          *   P1  P2  P3  P4
@@ -225,29 +238,27 @@ TamaGame.prototype = {
     },
 
     createPlayer(indexPlayer,img,name) {
-            var player = new TamaGame.Player(game,indexPlayer+1,{
+            var player = new TamaGame.Player(game,nb+1,{
                 img : img,
                 name : name,
             }); 
         var offset = indexPlayer*30;
-        // this.players.addAt(player,indexPlayer);
-        this.players.add(player);
-        // var p = this.players.children[indexPlayer];
-        player.road = this.roads.children[indexPlayer]; 
+        this.players.addAt(player,indexPlayer);
+        var p = this.players.children[indexPlayer];
+        p.road = this.roads.children[indexPlayer]; 
         
-        var style = { font: "48px Arial", fill: "#ff0044" };
-        var styleName = { font: "20px Arial", fill: "#b2b2b2" };
+        var style = { font: "42px Arial", fill: "#ff0044" };
         var middleRoad = (TamaGame.GAME_X/TamaGame.MAX_PLAYERS)/2;
-        player.score = game.add.text(player.x, 30, "0", style);
-        player.name_display = game.add.text(player.x, TamaGame.GAME_Y/2 ,name,styleName);
+        p.score = game.add.text(p.x + middleRoad, 30, "0", style);
+        p.name_display = game.add.text(p.x + middleRoad, TAMAGAME.GAME_Y - 50,name,style);
         //creation de la hitbox
-        player.hitbox = game.add.sprite(player.x + 50, player.y, null);
-        game.physics.enable(player.hitbox,Phaser.Physics.ARCADE);
-        player.hitbox.enableBody = true;
-        player.hitbox.body.immovable = true;
-        player.hitbox.body.setSize(100,20);
-        player.hitbox.player = player;
-        this.hitboxes.add(player.hitbox);
+        p.hitbox = game.add.sprite(p.x + offset, TamaGame.GAME_Y/2, null);
+        game.physics.enable(p.hitbox,Phaser.Physics.ARCADE);
+        p.hitbox.enableBody = true;
+        p.hitbox.body.immovable = true;
+        p.hitbox.body.setSize(200,20);
+        p.hitbox.player = p;
+        this.hitboxes.add(p.hitbox);
     },
             
     inputMove : function(indexPlayer) {

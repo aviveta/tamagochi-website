@@ -17,10 +17,18 @@ import javax.websocket.EndpointConfig;
 
 import org.jboss.logging.Logger;
 
+import javax.ejb.EJB;
+import model.*;
+
+    
 import java.util.*;
 @ServerEndpoint(value = "/example", configurator = GetHttpSessionConfigurator.class)
 @Stateless
 public class WSEndpoint {
+
+      @EJB
+      FacadeTamagochis f;
+    
     public static HashMap<String,ArrayList<Session>> rooms;
     public static ArrayList<String> joueurs;
     static {
@@ -44,17 +52,27 @@ public class WSEndpoint {
         String room = null;
         String action = null;
         String user = null;
+        String nom_tama = null;
+        String user_email = null;
+        Joueur j = null;
+        
         if (params.length == 2) {
             room = params[1];
             action = params[0];
         }
+        System.out.println("TAIIIIILE:"+params.length);
         if (params.length == 3) {
             room = params[1];
+            //action = rejoindre
             action = params[0];
-            user = params[2];
+            user_email = params[2];
+            //recherche du joueur courant
+            j = f.getJoueur(user_email);
         }
+        
         System.out.println(room);
         System.out.println(action);
+        System.out.println(user_email);
         
         if (action != null && room != null ) {
             //creation room
@@ -72,7 +90,13 @@ public class WSEndpoint {
                     rooms.get(room).add(session);
                     //on envoie une notification au jeu 
                     try {
-                        rooms.get(room).get(0).getBasicRemote().sendText("newPlayer");
+                        //on envoie les infos sur le newPlayer
+                        if (user_email != null) {
+                            int index = rooms.get(room).indexOf(session);
+                            System.out.println("indexJoueur:"+index);
+                            Tamagochi t = f.getTamaCourant(j);
+                            rooms.get(room).get(0).getBasicRemote().sendText("newPlayer;"+index+";"+user_email+";"+t.getNom());
+                        }
                     } catch(Exception e) {e.printStackTrace();}
                 }
             }
