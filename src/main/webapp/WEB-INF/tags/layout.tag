@@ -33,7 +33,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <c:if test="${empty username}">
               <li class="active"><a href="/tama-game/inscription">Inscription / Se connecter <span class="sr-only">(current)</span></a></li>
@@ -58,6 +58,10 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <c:if test="${not empty erreur}">
+    <div class="alert-warning">${erreur}</div> 
+    </c:if>
+
     <!-- page-container contient tout le contenu relatif a la page courante -->
     <div id="page-container">
           <jsp:invoke fragment="content"/>
