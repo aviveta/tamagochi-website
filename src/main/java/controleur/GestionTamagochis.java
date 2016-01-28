@@ -42,7 +42,6 @@ public class GestionTamagochis extends HttpServlet {
             Joueur j = f.getJoueur(mail);
             Tamagochi t = f.ajoutTama(nomTama, j);
             f.setTamaCourant(j, t);
-            // t.courant = true;
             System.out.println(t.courant+"keeekekekkekeke");
             t = f.update(t);
             j = f.update(j);
@@ -56,13 +55,10 @@ public class GestionTamagochis extends HttpServlet {
             Joueur j = f.getJoueur(mail);
             int idTama = Integer.parseInt(request.getParameter("id"));
             Tamagochi t = f.getTama(idTama);
-            // Tamagochi t1 = f.getTamaCourant(j);
             f.setTamaCourant(j, t);
             t = f.update(t);
-            // t1 = f.update(t1);
             j = f.update(j);
             Collection<Tamagochi> listeTama = f.getTamagochis(j);
-            //f.update(listeTama);
             request.setAttribute("tamaCourant", t);
             request.setAttribute("tamagochis", listeTama);
             request.getRequestDispatcher("jsp/listeTamagochis.jsp").forward(request, response);

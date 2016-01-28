@@ -58,14 +58,7 @@
         <h3><c:out value="${i.nom}"/></h3>
 
         <p>
-	<%--<form method="post" action="/tama-game/gestionTamagochis">
-	  <button class="btn btn-primary btn-gestion" type="submit">Gérer ce tamagochi</button>
-	  <input type="hidden" name="a" value="gererTama" />
-	  <input type="hidden" name="id" value="<c:out value="${i.id}"/>" />
-	  <button class="btn btn-primary btn-gestion" type="submit">Choisir</button>
-	  <input type="hidden" name="a" value="choisirTamaCourant" />
-	  <input type="hidden" name="id" value="<c:out value="${i.id}"/>" />
-	</form>--%>
+
 	<a href="/tama-game/gestionTamagochis?a=gererTama&id=<c:out value="${i.id}"/>">
 	<button class="btn btn-primary btn-gestion" type="submit">Gérer ce tamagochi</button>
 	</a>

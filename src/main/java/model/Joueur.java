@@ -33,11 +33,7 @@ public class Joueur {
   String email;
   String mdp;
 
-  //@OneToOne(mappedBy="prop",fetch=FetchType.EAGER)
-  //Tamagochi tama_courant; //
-
-
-    public Joueur() {}
+  public Joueur() {}
     
 
   public Joueur (String nom,String prenom, String email, String mdp){
@@ -48,14 +44,6 @@ public class Joueur {
     
 
   }
-
-  /*public Joueur (String nom,String prenom, String email, String mdp, Tamagochi t){
-    this.nom=nom;
-    this.prenom=prenom;
-    this.email=email;
-    this.mdp=mdp;
-    this.tama_courant = t;
-  }//*/
 
   //gestion des tamagotshis
 
@@ -115,25 +103,6 @@ public class Joueur {
   }
 
   //Getter et setter
-
-  /*public Tamagochi getTamaCourant() {
-	ArrayList<Tamagochi> l = new ArrayList<Tamagochi>();
-	l = (ArrayList) getTamas();
-	int i=0;
-	int taille = l.size();
-	while(!(l.get(i).getCourant()) && i<taille) {
-		i++;
-	}
-	return l.get(i);
-
-    //return this.tama_courant;
-  }//
-
-  public void setTamaCourant(Tamagochi t) {
-    t.setCourant(true);
-    getTamaCourant().setCourant(false);
-    //this.tama_courant = t;
-  }//*/
   
   public int getId(){
     return this.id;

@@ -44,18 +44,6 @@
 	<img id="tama-gere" src="/tama-game/public/img/gestion/<c:out value="${tamaCourant.nom}"/>.png" name="<c:out value="${tamaCourant.id}"/>" />
       </div>
 
-      <%--<div id="droite" class="btn-group" role="group" aria-label="...">
-	<form method="post" action="/tama-game/gestionTamagochis">
-  	  <button type="button" class="btn btn-lg btn-default bouton-gerer">Distraire</button>
-	  <input type="hidden" name="a" value="distraire" />
-	</form>
-
-	<form method="post" action="/tama-game/gestionTamagochis">
-  	  <button type="button" class="btn btn-lg btn-default bouton-gerer">Faire du sport</button>
-	  <input type="hidden" name="a" value="sport" />
-	</form>
-      </div>--%>
-
       <div id="droite" class="btn-group" role="group" aria-label="...">
 
 	<div class="panel panel-default">
