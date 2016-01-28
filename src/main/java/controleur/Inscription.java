@@ -18,7 +18,6 @@ public class Inscription extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setAttribute("username",request.getSession(true).getAttribute("joueur")) ;
 		if (request.getParameter("a").equals("inscrire")) {
 			request.getRequestDispatcher("jsp/page_inscription.jsp").forward(request, response);
 		} else if (request.getParameter("a").equals("connecter")) {

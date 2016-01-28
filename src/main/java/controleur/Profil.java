@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.*;
 
- @WebServlet("/profil")
+@WebServlet("/profil")
 public class Profil extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -22,14 +22,8 @@ public class Profil extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	  //request.setAttribute("username",request.getSession(true).getAttribute("joueur")) ;
-
-
-
 	  request.getRequestDispatcher("jsp/profil.jsp").forward(request, response);
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  HttpSession session = request.getSession(true);	

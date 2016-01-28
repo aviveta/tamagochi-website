@@ -14,41 +14,6 @@ public class FacadeJoueurs{
   @PersistenceContext
   EntityManager em;
 
- 
-  // int idJoueur=0;
-  // int idTama=0;
-  // int idObj= 0;
-  // HashMap<Integer,Joueur> joueurs=new HashMap<Integer,Joueur>();
-  // HashMap<Integer,Tamagochi> tama=new HashMap<Integer,Tamagochi>();
-  // HashMap<Integer,Obj> objets=new HashMap<Integer,Obj>();
-  // Boutique b = new Boutique();
- 
-  //getter and setter
-  
-  // public int getIdJoueur() {
-		// return idJoueur;
-	// }
-
-  // public int getIdTama() {
-		// return idTama;
-	// }
-
-  // public int getIdObj() {
-		// return idObj;
-	// }
-
-  // public void setIdJoueur(int idJ) {
-		// this.idJoueur = idJ;
-	// }
-  
-  // public void setIdTama(int idT) {
-		// this.idTama = idT;
-	// }
-
-  // public void setIdObj(int idO) {
-		// this.idObj = idO;
-	// }
-
   public Collection<Joueur> getJoueurs() {
 	return em.createQuery("from Joueur", Joueur.class).getResultList();	
   }
@@ -71,7 +36,6 @@ public class FacadeJoueurs{
 
   public Collection<Tamagochi> getTamagochis(Joueur joueur) {
       int id = joueur.id;
-      // select * from Tamagochi where proprietaire = 'id'
       return em.createQuery("from Tamagochi", Tamagochi.class).getResultList();
 		
   }
@@ -81,18 +45,6 @@ public class FacadeJoueurs{
 		
   }
 
-  // public void setJoueurs(HashMap<Integer, Joueur> jrs) {
-		// this.joueurs = jrs;
-  // }
-
-  // public void setTama(HashMap<Integer, Tamagochi> tas) {
-		// this.tama = tas;
-  // }
-
-  // public void setObjets(HashMap<Integer, Obj> o) {
-		// this.objets = o;
-  // }
-
   //Ajout dans les tables
 
   public void ajoutJoueur(String nom, String prenom,String email,String mdp){
@@ -101,29 +53,6 @@ public class FacadeJoueurs{
     // joueurs.put(j.getId(),j);
 
   }
-
-  //Changer les attributs d'un Joueur: 
-  // public void JsetNom(Joueur j,String nNom) {
-  //   try{
-// UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
-// transaction.begin();
- // j.setNom(nNom);
-// transaction.commit();
-// } catch (NamingException e){
-
-// }
- // catch (NotSupportedException ex){
-
- // }
-  // catch (RollbackException exp){
-
-  //   }
- // catch (SystemException exc){
-
- // }
-  
-
-// }
 
 //Ajouter un Tamagoshi à un joueur
   public void ajoutTama(String nom, int sexe, int idJoueur){
@@ -184,9 +113,7 @@ public class FacadeJoueurs{
 
 
 public void update(Joueur joueur) {
-  System.out.println("MODIFICATION JOUEUR KEBBA");
   em.merge(joueur);
-  // em.persist(joueur);
 }
 
 

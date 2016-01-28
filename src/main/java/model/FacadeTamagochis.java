@@ -44,10 +44,6 @@ public class FacadeTamagochis{
             t1 = getTamaCourant(j);
             t.courant = true;
             t1.courant = false;
-            System.out.println("----------------------------------------");
-            System.out.println(t1.toCsv());
-            System.out.println(t1.courant);
-            System.out.println("----------------------------------------");
             em.merge(t1);
         } catch (Exception e) {
             //si on ne trouve rien, le premier tamagochi est le courant
