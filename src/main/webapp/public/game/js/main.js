@@ -1,6 +1,6 @@
 /******************* TAMAGAME ********************/
 
-var game = new Phaser.Game(900,400,Phaser.CANVAS,'tama-game');
+var game = new Phaser.Game(800,400,Phaser.CANVAS,'tama-game');
 
 var TamaGame = function() {
     this.tamagochis = null; 
@@ -107,6 +107,7 @@ TamaGame.prototype = {
         // game.load.image('p3',TamaGame.IMG_FOLDER+'p3.png');
         // game.load.image('p4',TamaGame.IMG_FOLDER+'p4.png');
         game.load.image('blonde',TamaGame.IMG_FOLDER+'blonde.png');
+        game.load.image('panda',TamaGame.IMG_FOLDER+'panda.png');
         game.load.image('lovelin',TamaGame.IMG_FOLDER+'lovelin.png');
         game.load.image('himouto',TamaGame.IMG_FOLDER+'himouto.png');
         game.load.image('kiraichi',TamaGame.IMG_FOLDER+'kiraichi.png');
@@ -115,6 +116,7 @@ TamaGame.prototype = {
         game.load.image('tamago',TamaGame.IMG_FOLDER+'tamago.png');
         game.load.image('umaru',TamaGame.IMG_FOLDER+'umaru.png');
         game.load.image('vintage',TamaGame.IMG_FOLDER+'vintage.png');
+        game.load.image('nadeshiko',TamaGame.IMG_FOLDER+'nadeshiko.png');
     },
 
 
@@ -225,7 +227,7 @@ TamaGame.prototype = {
     },
 
     createPlayer(indexPlayer,img,name) {
-            var player = new TamaGame.Player(game,indexPlayer+1,{
+            var player = new TamaGame.Player(game,indexPlayer,{
                 img : img,
                 name : name,
             }); 
@@ -233,10 +235,10 @@ TamaGame.prototype = {
         // this.players.addAt(player,indexPlayer);
         this.players.add(player);
         // var p = this.players.children[indexPlayer];
-        player.road = this.roads.children[indexPlayer]; 
+        player.road = this.roads.children[indexPlayer-1]; 
         
         var style = { font: "48px Arial", fill: "#ff0044" };
-        var styleName = { font: "20px Arial", fill: "#b2b2b2" };
+        var styleName = { font: "15px Arial", fill: "#b2b2b2" };
         var middleRoad = (TamaGame.GAME_X/TamaGame.MAX_PLAYERS)/2;
         player.score = game.add.text(player.x, 30, "0", style);
         player.name_display = game.add.text(player.x, TamaGame.GAME_Y/2 ,name,styleName);
